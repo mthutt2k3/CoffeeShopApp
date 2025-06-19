@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- Product Image -->
+    <ImageView
+        android:id="@+id/ivProductImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_avatar"
+        android:layout_marginRight="10dp"/>
+
+    <!-- Product Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp">
+
+        <!-- Product Name -->
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_name_view_product"
+            android:textColor="@color/product_name_color_view_product"
+            android:textSize="18sp" />
+
+        <!-- Product Price -->
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_price_view_product"
+            android:textColor="@color/product_price_color_view_product"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!--    <Button-->
+    <!--        android:id="@+id/tvAction"-->
+    <!--        android:layout_width="160dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:text="@string/delete_product_view_product"-->
+    <!--        android:textColor="@color/text_color_white_view_product"-->
+    <!--        android:background="@color/button_background_red_view_product"-->
+    <!--        android:gravity="center"-->
+    <!--        android:textSize="15sp"/>-->
+    <Button
+        android:id="@+id/tvAction"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="X"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+</LinearLayout>

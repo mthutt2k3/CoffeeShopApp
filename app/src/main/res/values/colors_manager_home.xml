@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_text_color_home_view_employee">#FFFFFF</color>
+    <color name="button_background_color_home_view_employee">#8692f7 </color>
+    <color name="home_header_color_home_view_employee">#8692f7 </color>
+</resources>
