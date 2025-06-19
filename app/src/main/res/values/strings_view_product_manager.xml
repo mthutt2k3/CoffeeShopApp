@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Total Products Found Text -->
+    <string name="total_products_found_view_product">Total Products Found</string>
+
+    <!-- Button Text -->
+    <string name="add_product_view_product">Add Product</string>
+
+    <!-- Product Action Text -->
+    <string name="delete_product_view_product">Delete</string>
+
+    <!-- No products found message -->
+    <string name="no_products_found_view_product">No products found.</string>
+
+    <!-- Text for displaying the number of products found -->
+    <string name="products_found_view_product">Products Found</string>
+
+    <!-- Text for Product Name -->
+    <string name="product_name_view_product">Product Name</string>
+
+    <!-- Text for Product Price -->
+    <string name="product_price_view_product">Price</string>
+    <!-- Hint -->
+    <string name="product_name_add_product">Enter product name here</string>
+    <string name="product_recipe_add_product">Enter product recipe here</string>
+    <string name="product_price_add_product">Enter product price here</string>
+    <string name="product_stock_add_product">Enter stock quantity here</string>
+    <string name="product_note_image_add_product">Note: Images with .jpg, .gif, .jpeg, and .png are allowed.</string>
+    <string name="product_file_chosen_add_product">No file chosen</string>
+
+    <!-- Button Text -->
+    <string name="save_product">Save Product</string>
+    <string name="image_picker_description">Choose an image from library</string>
+
+    <!-- Edit Product -->
+    <string name="product_active_status">Active</string>
+    <string name="header_edit_product_view_product">Edit Product</string>
+</resources>

@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,17 +19,164 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CoffeeShopManagement"
+        android:theme="@style/Theme.PRM392_CoffeeShopManagement"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".activity.LoginActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:label="Change Password"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EditUserProfileActivity"
+            android:exported="false"
+            android:label="Edit User Profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.HomeEmployeeActivity"
+            android:exported="true"
+            android:label="Home Employee"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.HomeManagerActivity"
+            android:exported="true"
+            android:label="Manager Home"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.HomeStoreKeeperActivity"
+            android:exported="false"
+            android:label="Store Keeper Home"
+            android:theme="@style/Theme.PRM392_CoffeeShopManagement" />
+
+        <activity
+            android:name=".activity.EditScheduleActivity"
+            android:exported="false"
+            android:label="Edit Schedule"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddScheduleActivity"
+            android:exported="true"
+            android:label="Add Schedule"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EditCategoryActivity"
+            android:exported="false"
+            android:label="Edit Category"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddCategoryActivity"
+            android:exported="false"
+            android:label="Add Category"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.CategoryListManagerActivity"
+            android:label="Category List Management"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.AddStaffActivity"
+            android:label="Add Staff"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.OrderDetailsActivity"
+            android:exported="false"
+            android:label="Order Details"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.ViewEmployeeScheduleActivity"
+            android:exported="false"
+            android:label="View Employee Schedule"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrderListEmployeeActivity"
+            android:exported="true"
+            android:label="Order List"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.CategoryListEmployeeActivity"
+            android:exported="false"
+            android:label="Category List"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.ProductListEmployeeActivity"
+            android:exported="true"
+            android:label="Product List"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".activity.ViewScheduleListActivity"
+            android:label="View Schedule List"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddEmployeeActivity"
+            android:exported="true"
+            android:label="Add Employee"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EditEmployeeActivity"
+            android:exported="true"
+            android:label="Edit Employee"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.ProductListManagerActivity"
+            android:exported="true"
+            android:label="Product List Management"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EditProductActivity"
+            android:exported="true"
+            android:label="Product List"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.StaffListStorekeeperActivity"
+            android:label="Staff List"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.AddProductActivity"
+            android:exported="true"
+            android:label="Add Product"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EmployeeListActivity"
+            android:exported="true"
+            android:label="Employee List"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".activity.ViewHomePageActivity"
+            android:exported="true"
+            android:label="View Home Page"
+            android:theme="@style/Theme.ViewHomePage">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".activity.EditStaffActivity"
+            android:label="Edit Staff"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FinancialReportActivity"
+            android:label="Financial Report"
+            android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

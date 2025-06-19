@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Total Employees Found Text -->
+    <string name="total_employees_found_view_employee">Total Employees Found</string>
+
+    <!-- Button Text -->
+    <string name="save_employee_view_employee">Save Employee</string>
+    <string name="header_add_employee_view_employee">Add Employee</string>
+    <string name="header_edit_employee_view_employee">Edit Employee</string>
+    <!-- Employee Action Text -->
+    <string name="delete_employee_view_employee">Delete</string>
+
+    <!-- No employees found message -->
+    <string name="no_employees_found_view_employee">No employees found.</string>
+
+    <!-- Text for displaying the number of employees found -->
+    <string name="employees_found_view_employee">Employees Found</string>
+
+    <!-- Text for Employee Name -->
+    <string name="employees_name_view_employee">Employee Name</string>
+    <!-- Text for Employee Position -->
+    <string name="employees_position_view_employee">Position</string>
+
+    <!-- Add || Edit Employee Fields -->
+    <string name="employees_fullname_add_employee">Full Name</string>
+    <string name="employees_username_add_employee">Username</string>
+    <string name="employees_email_add_employee">Email</string>
+    <string name="employees_phonenumber_add_employee">Phone Number</string>
+    <string name="employees_password_add_employee">Password</string>
+    <string name="employees_confirmpassword_add_employee">Confirm Password</string>
+    <string name="employees_role_add_employee">Role</string>
+    <string name="employees_active_edit_employee">Active</string>
+    <!-- Role -->
+    <string-array name="role_array_employee">
+        <item>Cashier</item>
+        <item>Barista</item>
+        <item>Waiter</item>
+        <item>Security</item>
+    </string-array>
+
+    <!-- Validation Messages -->
+    <string name="employees_validation_empty_fields">Please fill in all required fields.</string>
+    <string name="employees_validation_invalid_email">Invalid email format. Please enter a valid email.</string>
+    <string name="employees_validation_password_mismatch">Password and Confirm Password do not match.</string>
+    <string name="employees_validation_invalid_phone">Invalid phone number format. Please enter a valid phone number.</string>
+
+    <!-- Username, Email, Phone Exists Messages -->
+    <string name="employees_validation_username_exists">Username already exists. Please choose a different username.</string>
+    <string name="employees_validation_email_exists">Email already exists. Please use a different email.</string>
+    <string name="employees_validation_phone_exists">Phone number already exists. Please use a different phone number.</string>
+</resources>

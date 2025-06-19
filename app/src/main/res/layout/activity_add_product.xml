@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity.AddProductActivity">
+
+    <!-- Product Title -->
+    <TextView
+        android:id="@+id/productTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/add_product_view_product"
+        android:textSize="40sp"
+        android:textColor="@color/lavender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Product Name -->
+    <EditText
+        android:id="@+id/edtProductName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/product_name_add_product"
+        android:maxLength="100"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productTitle"
+        android:autofillHints="name"
+        android:inputType="text"/>
+
+    <!-- Product Recipe -->
+    <EditText
+        android:id="@+id/edtProductRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top|start"
+        android:hint="@string/product_recipe_add_product"
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:maxLines="6"
+        android:minLines="6"
+        android:scrollbars="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtProductName"
+        android:autofillHints="recipe"/>
+
+    <!-- Product Price -->
+    <EditText
+        android:id="@+id/edtProductPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/product_price_add_product"
+        android:inputType="numberDecimal"
+        android:maxLength="100"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtProductRecipe"
+        android:autofillHints="price"/>
+
+    <!-- Category Spinner -->
+    <Spinner
+        android:id="@+id/spCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtProductPrice" />
+
+    <!-- Stock Quantity -->
+    <EditText
+        android:id="@+id/edtStockQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/product_stock_add_product"
+        android:inputType="number"
+        android:maxLength="100"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spCategory"
+        android:autofillHints="quantity"/>
+
+
+    <!-- Selected File Name -->
+    <TextView
+        android:id="@+id/txtFileInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:text="@string/product_note_image_add_product"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPreview" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/image_picker_description"
+        android:onClick="openFileChooserAdd"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtStockQuantity"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/txtFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/product_file_chosen_add_product"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/imgPreview"
+        app:layout_constraintTop_toBottomOf="@+id/edtStockQuantity" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSaveProduct"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/button_background_color_home_view_employee"
+        android:text="@string/save_product"
+        android:textColor="@color/button_text_color_home_view_employee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFileInfo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

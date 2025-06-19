@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="page_title_home_view_Manager">Cafe Shop Management</string>
+    <string name="page_title_home_view_Manager_AtoZ">Shop from A to Z</string>
+    <string name="product_management_home_view_employee">Product Management</string>
+    <string name="category_management_home_view_employee">Category Management</string>
+    <string name="employee_management_home_view_employee">Employee Management</string>
+    <string name="work_schedule_management_home_view_employee">Work Schedule Management</string>
+</resources>

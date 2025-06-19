@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Total Staff Found Text -->
+    <string name="total_staff_found_view_staff">Total Staff Found</string>
+
+    <!-- Button Text -->
+    <string name="add_staff_view_staff">Add Staff</string>
+    <string name="edit_staff_view_staff">Edit</string>
+
+    <!-- Staff Action Text -->
+    <string name="delete_staff_view_staff">Delete</string>
+
+    <!-- No staff found message -->
+    <string name="no_staff_found_view_staff">No staff found.</string>
+
+    <!-- Text for displaying the number of staff found -->
+    <string name="staff_found_view_staff">Staff Found</string>
+
+    <!-- Text for Staff Name -->
+    <string name="staff_name_view_staff">Staff Name</string>
+
+    <!-- Text for Staff Role -->
+    <string name="staff_role_view_staff">Role</string>
+
+    <!-- Text for Staff Email -->
+    <string name="staff_email_view_staff">Email</string>
+
+    <!-- Hint -->
+    <string name="staff_name_add_staff">Enter staff name here</string>
+    <string name="staff_email_add_staff">Enter staff email here</string>
+    <string name="staff_password_add_staff">Enter staff password here</string>
+    <string name="staff_role_add_staff">Select staff role</string>
+    <string name="staff_note_image_add_staff">Note: Images with .jpg, .gif, .jpeg, and .png are allowed.</string>
+    <string name="staff_file_chosen_add_staff">No file chosen</string>
+
+    <!-- Button Text -->
+    <string name="save_staff">Save Staff</string>
+
+    <!-- Edit Staff -->
+    <string name="staff_active_status">Active</string>
+    <string name="header_edit_staff_view_staff">Edit Staff</string>
+</resources> 
