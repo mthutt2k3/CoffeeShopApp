@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color for employee name, Black for employee name -->
+    <color name="employee_name_color_view_employee">#000000</color>
+
+    <!-- Color for employee position,Light gray for position -->
+<!--    <color name="employee_position_color_view_employee">#888888</color> -->
+
+    <!-- Color for delete button -->
+    <color name="delete_button_color_view_employee">#FF0000</color> <!-- Red for delete button -->
+
+    <!-- White color for text -->
+    <color name="text_color_white_view_employee">#FFFFFF</color> <!-- White text color -->
+    <!-- Color for delete button background -->
+    <color name="button_background_red_view_employee">#FF0000</color>
+
+    <!-- Color for Active Toggle (Green for Active) -->
+    <color name="active_toggle_color">#4CAF50</color>
+
+</resources>

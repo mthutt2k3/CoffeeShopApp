@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- Employee Avatar -->
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_avatar"
+        android:layout_marginRight="10dp"/>
+
+    <!-- Employee Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp">
+
+        <!-- Employee Name -->
+        <TextView
+            android:id="@+id/tvEmployeeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/employees_name_view_employee"
+            android:textColor="@color/employee_name_color_view_employee"
+            android:textSize="18sp" />
+
+        <!-- Employee Position -->
+        <TextView
+            android:id="@+id/tvPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/employees_position_view_employee"
+            android:textColor="@color/employee_name_color_view_employee"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Delete Employee Button -->
+<!--    <Button-->
+<!--        android:id="@+id/tvAction"-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:text="@string/delete_employee_view_employee"-->
+<!--        android:textColor="@color/text_color_white_view_employee"-->
+<!--        android:background="@color/button_background_red_view_employee"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="15sp"/>-->
+    <Button
+        android:id="@+id/tvAction"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="X"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+</LinearLayout>

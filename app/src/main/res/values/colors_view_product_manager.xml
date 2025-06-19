@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color for product name -->
+    <color name="product_name_color_view_product">#000000</color> <!-- Black for product name -->
+
+    <!-- Color for product price -->
+    <color name="product_price_color_view_product">#888888</color> <!-- Light gray for price -->
+
+    <!-- Color for delete button -->
+    <color name="delete_button_color_view_product">#FF0000</color> <!-- Red for delete button -->
+
+    <!-- White color for text -->
+    <color name="text_color_white_view_product">#FFFFFF</color> <!-- White text color -->
+
+    <!-- Color for delete button background -->
+    <color name="button_background_red_view_product">#FF0000</color> <!-- Red background for delete button -->
+</resources>
