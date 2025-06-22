@@ -1,71 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/coffeeCream"
+    android:padding="16dp"
     tools:context=".activity.CategoryListManagerActivity">
 
+    <!-- Button thêm danh mục -->
     <Button
         android:id="@+id/btnAddCategory"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Add Category"
-        android:background="@color/button_background_color_home_view_employee"
-        android:textColor="@color/button_text_color_home_view_employee"
+        android:drawableLeft="@drawable/ic_add"
+        android:drawablePadding="8dp"
+        android:paddingHorizontal="20dp"
+        android:backgroundTint="@color/coffeeBrown"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Thanh tìm kiếm -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp"
+        android:hint="Search category"
         app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/coffeeBrown"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnAddCategory"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddCategory">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/search_icon"
-            android:drawablePadding="5dp"
             android:hint="Search category"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            app:cornerRadius="10dp" />
-
+            android:drawableStart="@drawable/search_icon"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppins_regular" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Danh sách + Shimmer -->
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="NULL"
-        android:padding="10dp"
+        android:paddingTop="16dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/searchInputLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchInputLayout"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
 
+            <!-- Shimmer loading -->
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/skeletonLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="true"
+                app:shimmer_duration="1000"
+                app:shimmer_angle="20">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,27 +88,25 @@
                     android:orientation="vertical">
 
                     <include layout="@layout/category_list_item" />
-
                     <include layout="@layout/category_list_item" />
-
                     <include layout="@layout/category_list_item" />
-
                     <include layout="@layout/category_list_item" />
-
                     <include layout="@layout/category_list_item" />
-
                     <include layout="@layout/category_list_item" />
 
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
 
+            <!-- RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
-                tools:listitem="@layout/product_card_list_item" />
+                android:paddingTop="8dp"
+                android:layout_marginBottom="16dp"
+                tools:listitem="@layout/category_list_item" />
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
