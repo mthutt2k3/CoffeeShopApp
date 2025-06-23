@@ -6,123 +6,120 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp"
-    android:gravity="top"
     tools:context=".activity.EditUserProfileActivity">
+
+    <!-- Ảnh đại diện -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="160dp"
         android:layout_height="111dp"
-        android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_login_user_logo"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal" />
 
-    <!-- Dòng User name -->
-    <LinearLayout
+    <!-- CardView chứa thông tin người dùng -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="20dp">
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="User name:"
-            android:textSize="16sp" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="donghai0610"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <!-- User name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="@color/brown"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp" />
 
-    <!-- Dòng Full Name -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="donghai0610"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginTop="4dp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Full Name:"
-            android:textSize="16sp" />
+            <!-- Full Name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textColor="@color/brown"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp" />
 
-        <EditText
-            android:id="@+id/edFullName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:hint="Enter Full Name"
-            android:background="@drawable/drawable_sharp_adf_scanner_24"
-            android:textSize="16sp"
-            android:padding="8dp" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edFullName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edittext_border"
+                android:hint="Enter Full Name"
+                android:textColor="@color/black"
+                android:padding="12dp" />
 
-    <!-- Dòng Phone -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="20dp">
+            <!-- Phone -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="@color/brown"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Phone:"
-            android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edittext_border"
+                android:hint="Enter Phone Number"
+                android:textColor="@color/black"
+                android:padding="12dp" />
 
-        <EditText
-            android:id="@+id/edPhoneNumber"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:hint="Enter Phone Number"
-            android:background="@drawable/drawable_sharp_adf_scanner_24"
-            android:textSize="16sp"
-            android:padding="8dp" />
-    </LinearLayout>
+            <!-- Role -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role"
+                android:textColor="@color/brown"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp" />
 
-    <!-- Dòng Role -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/tvRoleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Staff"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginTop="4dp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Role:"
-            android:textSize="16sp" />
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/btnUpdateProfile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvRoleName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="Staff"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- Save Button -->
-    <Button
-        android:id="@+id/btnUpdateProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp" />
 </LinearLayout>
