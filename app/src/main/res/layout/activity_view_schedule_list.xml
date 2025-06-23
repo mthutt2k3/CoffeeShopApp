@@ -172,7 +172,7 @@
                     android:paddingTop="12dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="12dp"
-                    android:text="<"
+                    android:text=""
                     android:textColor="#5D4037"
                     android:textSize="16sp"
                     android:textStyle="bold" />
