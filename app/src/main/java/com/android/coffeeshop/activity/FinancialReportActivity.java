@@ -35,6 +35,7 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
     private OrderViewModel orderViewModel;
     private ImageButton btnBack;
     private float maxSales = 0f;
+    private TextView tvTotalRevenue, tvAverageRevenue;
 
     @Override
     protected int getLayoutResourceId() {
@@ -57,7 +58,8 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
 
         // Hiển thị phạm vi tuần
         tvWeekRange.setText(DateUtils.getWeekRangeDisplay());
-
+        tvTotalRevenue = findViewById(R.id.tvTotalRevenue);
+        tvAverageRevenue = findViewById(R.id.tvAverageRevenue);
         // Thiết lập cấu hình cơ bản cho biểu đồ
         setupChart();
     }
@@ -105,7 +107,9 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
             }
         });
     }
-
+    private String formatCurrency(float amount) {
+        return String.format("%,.0f", amount);
+    }
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
     }
@@ -117,19 +121,25 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
         // Chuyển đổi dữ liệu cho biểu đồ
         maxSales = 0f;
         int maxIndex = 0;
+        float totalRevenue = 0f;
 
         for (int i = 0; i < dailyStats.size(); i++) {
             DailyOrderStats stat = dailyStats.get(i);
             float value = stat.getTotalSales();
             values.add(new Entry(i, value));
             xLabels.add(DateUtils.formatDateForChart(stat.getOrderDate()));
-
+            totalRevenue += value;
             // Tìm giá trị cao nhất
             if (value > maxSales) {
                 maxSales = value;
                 maxIndex = i;
             }
         }
+        float averageRevenue = dailyStats.isEmpty() ? 0 : totalRevenue / dailyStats.size();
+
+        // Hiển thị lên giao diện
+        tvTotalRevenue.setText(formatCurrency(totalRevenue) + " $");
+        tvAverageRevenue.setText(formatCurrency(averageRevenue) + " $");
 
         // Cấu hình trục X
         XAxis xAxis = lineChart.getXAxis();

@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("password", password);
             } else {
 
-                editor.remove("username");
+//                editor.remove("username");
                 editor.remove("password");
             }
             editor.apply();

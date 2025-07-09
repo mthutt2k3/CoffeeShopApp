@@ -70,7 +70,6 @@ public class ScheduleEmployeeAdapter extends RecyclerView.Adapter<ScheduleEmploy
                 holder.userTextView.setText(user != null ? user.getFullName() : "Unknown User");
 
                     UserWithRole userWithRole = userViewModel.getUserWithRoleById(user.getUserId());
-
                     if ("Employee".equalsIgnoreCase(userWithRole.getRoleName())) {
                         holder.deleteButton.setVisibility(View.GONE);
                     } else {

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/login_bg_image"
+    android:background="@drawable/background_wave"
     android:gravity="center"
     tools:context=".activity.LoginActivity">
     <androidx.cardview.widget.CardView
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:textColor="@color/purple"
+                android:textColor="@color/brown"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:textAlignment="center"/>
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/drawable_sharp_adf_scanner_24"
+                android:background="@drawable/edittext_border"
                 android:drawableLeft="@drawable/ic_baseline_login_username_24"
                 android:drawablePadding="8dp"
                 android:hint="Username"
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/drawable_sharp_adf_scanner_24"
+                android:background="@drawable/edittext_border"
                 android:drawableLeft="@drawable/ic_baseline_password_icon_24"
                 android:drawablePadding="8dp"
                 android:hint="Password"
@@ -61,24 +61,29 @@
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
+
             <CheckBox
                 android:id="@+id/chkRememberMe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Remember Me"
-                android:textColor="@color/black"/>
-
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:minHeight="48dp"
+                android:minWidth="48dp" />
+            <!-- Nút Login -->
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
+                android:layout_height="50dp"
                 android:text="Login"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                app:cornerRadius="20dp" />
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_background"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="12dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
