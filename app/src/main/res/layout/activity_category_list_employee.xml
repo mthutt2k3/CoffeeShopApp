@@ -52,8 +52,8 @@
                 android:src="@drawable/search_icon"
                 app:tint="#9CA3AF" />
 
-            <EditText
-                android:id="@+id/searchInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -82,7 +82,8 @@
         <activity
             android:name=".activity.CategoryListManagerActivity"
             android:label="Category List Management"
-            android:exported="true"/>
+            android:exported="false"
+            android:theme="@style/Theme.PRM392_CoffeeShopManagement" />
         <activity
             android:name=".activity.AddStaffActivity"
             android:label="Add Staff"
@@ -107,7 +108,7 @@
             android:name=".activity.CategoryListEmployeeActivity"
             android:exported="false"
             android:label="Category List"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.PRM392_CoffeeShopManagement" />
         <activity
             android:name=".activity.ProductListEmployeeActivity"
             android:exported="true"

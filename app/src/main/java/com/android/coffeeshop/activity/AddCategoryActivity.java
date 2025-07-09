@@ -20,8 +20,8 @@ public class AddCategoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
 
-        edtCategoryName = findViewById(R.id.edtCategoryName);
-        btnSaveCategory = findViewById(R.id.btnSaveCategory);
+        edtCategoryName = findViewById(R.id.categoryInput);
+        btnSaveCategory = findViewById(R.id.saveButton);
 
         categoryViewModel = new CategoryViewModel(getApplication());
         btnSaveCategory.setOnClickListener(v -> onSaveCategoryClicked());
