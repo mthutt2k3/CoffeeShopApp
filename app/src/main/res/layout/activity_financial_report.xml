@@ -87,7 +87,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Khoảng thời gian"
+                            android:text="This week"
                             android:textColor="#6C757D"
                             android:textSize="12sp" />
 
@@ -102,14 +102,7 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- Change Period Button -->
-                    <ImageButton
-                        android:id="@+id/btnChangePeriod"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@android:drawable/ic_menu_edit"
-                        app:tint="#6C757D" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -229,24 +222,7 @@
                                 android:textColor="#212529"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="Theo từng ngày trong tuần"
-                                android:textColor="#6C757D"
-                                android:textSize="12sp" />
                         </LinearLayout>
-
-                        <!-- Chart Type Toggle -->
-                        <ImageButton
-                            android:id="@+id/btnChartType"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:src="@android:drawable/ic_menu_sort_by_size"
-                            app:tint="#6C757D" />
                     </LinearLayout>
 
                     <!-- Divider -->
