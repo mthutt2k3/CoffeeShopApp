@@ -9,6 +9,7 @@ import com.android.coffeeshop.entity.Schedule;
 import com.android.coffeeshop.entity.User;
 import com.android.coffeeshop.repository.ScheduleRepository;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.NonNull;
@@ -22,11 +23,11 @@ public class ScheduleViewModel extends AndroidViewModel {
     }
 
     // Method to fetch schedule data
-    public LiveData<List<Schedule>> getScheduleData(String startDate, String endDate) {
+    public LiveData<List<Schedule>> getScheduleData(Date startDate, Date endDate) {
         return scheduleRepository.getScheduleData(startDate, endDate);
     }
 
-    public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, String startDate, String endDate) {
+    public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, Date startDate, Date endDate) {
         return scheduleRepository.getScheduleOfEmployee(userName, startDate, endDate);
     }
 
