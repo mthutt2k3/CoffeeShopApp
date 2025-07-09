@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -43,7 +44,7 @@ public class CategoryListManagerActivity extends BaseActivity {
     private CategoryViewModel categoryViewModel;
     private UserViewModel userViewModel;
     CategoryManagerAdapter categoryAdapter;
-    TextInputEditText searchBox;
+    EditText searchBox;
     ShimmerFrameLayout skeletonLayout;
     private ShimmerFrameLayout skele;
     private Button btnAddCategory;
@@ -65,7 +66,6 @@ public class CategoryListManagerActivity extends BaseActivity {
         btnAddCategory.setOnClickListener(v -> {
             Intent intent = new Intent(CategoryListManagerActivity.this, AddCategoryActivity.class);
             startActivity(intent);
-//            Toast.makeText(CategoryListManagerActivity.this, "Navigating to Add Product", Toast.LENGTH_SHORT).show();
         });
     }
 
