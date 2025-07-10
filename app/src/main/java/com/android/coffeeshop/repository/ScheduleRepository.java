@@ -10,6 +10,7 @@ import com.android.coffeeshop.dao.UserDao;
 import com.android.coffeeshop.entity.Schedule;
 import com.android.coffeeshop.entity.User;
 
+import java.util.Date;
 import java.util.List;
 
 public class ScheduleRepository {
@@ -23,11 +24,11 @@ public class ScheduleRepository {
     }
 
     // Get the list of schedules for a user between the given date range
-    public LiveData<List<Schedule>> getScheduleData(String startDate, String endDate) {
+    public LiveData<List<Schedule>> getScheduleData(Date startDate, Date endDate) {
         return scheduleDao.getScheduleData(startDate, endDate);
     }
 
-    public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, String startDate, String endDate) {
+    public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, Date startDate, Date endDate) {
         return scheduleDao.getScheduleOfEmployee(userName, startDate, endDate);
     }
 

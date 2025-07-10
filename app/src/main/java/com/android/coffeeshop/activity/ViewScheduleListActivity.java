@@ -17,10 +17,13 @@ import com.android.coffeeshop.adapter.ScheduleAdapter;
 import com.android.coffeeshop.entity.Schedule;
 import com.android.coffeeshop.viewmodel.ScheduleViewModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewScheduleListActivity extends BaseActivity {
 
@@ -92,12 +95,14 @@ public class ViewScheduleListActivity extends BaseActivity {
         Calendar selectedDate = (Calendar) currentCalendar.clone();
         selectedDate.set(Calendar.DAY_OF_WEEK, dayIndex + 1); // Cập nhật ngày được chọn
         // Chuyển đổi ngày thành UNIX timestamp
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String selectedDateString = dateFormat.format(selectedDate.getTime());
-
-
-        loadScheduleDataForDate(selectedDateString, selectedDateString);
-
+        try {
+            Date selectedDateValue = dateFormat.parse(selectedDateString);
+            loadScheduleDataForDate(selectedDateValue, selectedDateValue);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     private void onItemClicked(Schedule schedule) {
         Intent intent = new Intent(ViewScheduleListActivity.this, EditScheduleActivity.class);
@@ -109,7 +114,7 @@ public class ViewScheduleListActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void loadScheduleDataForDate(String startDate, String endDate) {
+    private void loadScheduleDataForDate(Date startDate, Date endDate) {
         scheduleViewModel.getScheduleData(startDate, endDate).observe(this, new Observer<List<Schedule>>() {
             @Override
             public void onChanged(List<Schedule> schedules) {
@@ -184,24 +189,6 @@ public class ViewScheduleListActivity extends BaseActivity {
     private void newEventAction() {
         Intent intent = new Intent(ViewScheduleListActivity.this, AddScheduleActivity.class);
         startActivity(intent);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Add New Shift");
-//
-//        final EditText shiftInput = new EditText(this);
-//        shiftInput.setHint("Enter shift details");
-//        builder.setView(shiftInput);
-//
-//        builder.setPositiveButton("Add", (dialog, which) -> {
-//            String shiftDetails = shiftInput.getText().toString();
-//            if (!shiftDetails.isEmpty()) {
-//                Toast.makeText(ViewScheduleListActivity.this, "Shift added", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(ViewScheduleListActivity.this, "Shift details cannot be empty", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-//        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
-//        builder.show();
     }
 
     private void confirmDelete(int position) {

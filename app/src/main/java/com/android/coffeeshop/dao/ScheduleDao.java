@@ -9,19 +9,20 @@ import androidx.room.Update;
 
 import com.android.coffeeshop.entity.Schedule;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
 public interface ScheduleDao {
 
     @Query("SELECT * FROM schedule WHERE start_date BETWEEN :startDate AND :endDate")
-    LiveData<List<Schedule>> getScheduleData(String startDate, String endDate);
+    LiveData<List<Schedule>> getScheduleData(Date startDate, Date endDate);
 
     @Query("SELECT s.* FROM schedule s " +
             "INNER JOIN user u ON s.user_id = u.user_id " +
             "WHERE u.user_name = :userName " +
             "AND s.start_date BETWEEN :startDate AND :endDate")
-    LiveData<List<Schedule>> getScheduleOfEmployee(String userName, String startDate, String endDate);
+    LiveData<List<Schedule>> getScheduleOfEmployee(String userName, Date startDate, Date endDate);
 
     @Delete
     void delete(Schedule schedule);
