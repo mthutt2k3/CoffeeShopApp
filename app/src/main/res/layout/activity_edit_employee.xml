@@ -6,127 +6,157 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/coffeeCream"
     tools:context=".activity.EditEmployeeActivity">
 
-    <!-- Employee Title -->
+    <!-- Title -->
     <TextView
         android:id="@+id/employeeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="@string/header_edit_employee_view_employee"
-        android:textColor="@color/lavender"
-        android:textSize="40sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/coffeeDark"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Full Name -->
     <EditText
         android:id="@+id/edtFullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:hint="@string/employees_fullname_add_employee"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/employeeTitle" />
+        app:layout_constraintTop_toBottomOf="@id/employeeTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Username -->
     <EditText
         android:id="@+id/edtUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/employees_username_add_employee"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtFullName" />
+        app:layout_constraintTop_toBottomOf="@id/edtFullName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Email -->
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/employees_email_add_employee"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtUserName" />
+        app:layout_constraintTop_toBottomOf="@id/edtUserName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Phone Number -->
+    <!-- Phone -->
     <EditText
         android:id="@+id/edtPhoneNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/employees_phonenumber_add_employee"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="15"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Password -->
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/employees_password_add_employee"
         android:inputType="textPassword"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Confirm Password -->
     <EditText
         android:id="@+id/edtConfirmPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/employees_confirmpassword_add_employee"
         android:inputType="textPassword"
+        android:textColor="@color/coffeeTextDark"
+        android:textColorHint="@color/coffeeTextDark"
+        android:backgroundTint="@color/coffeeGray"
+        android:padding="12dp"
         android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+        app:layout_constraintTop_toBottomOf="@id/edtPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Active Toggle -->
+    <!-- Active Switch -->
     <Switch
         android:id="@+id/swActive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="@string/employees_active_edit_employee"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/coffeeTextDark"
         app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <!-- Position Spinner -->
+    <!-- Position -->
     <Spinner
         android:id="@+id/spPosition"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/swActive" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/coffeeLightBrown"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/swActive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Save Button -->
+    <!-- Save -->
     <Button
         android:id="@+id/btnSaveEmployee"
         android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/save_employee_view_employee"
-        android:textColor="@color/button_text_color_home_view_employee"
-        android:background="@color/button_background_color_home_view_employee"
+        android:textColor="@color/coffeeCream"
+        android:backgroundTint="@color/coffeeBrown"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/spPosition"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spPosition" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
