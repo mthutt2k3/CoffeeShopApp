@@ -10,6 +10,7 @@ import com.android.coffeeshop.entity.Order;
 import com.android.coffeeshop.repository.OrderRepository;
 import com.android.coffeeshop.utils.DailyOrderStats;
 
+import java.util.Date;
 import java.util.List;
 
 public class OrderViewModel extends AndroidViewModel {
@@ -31,5 +32,8 @@ public class OrderViewModel extends AndroidViewModel {
 
     public LiveData<List<DailyOrderStats>> getDailyStatsForCurrentWeek() {
         return orderRepository.getDailyStatsForCurrentWeek();
+    }
+    public LiveData<List<DailyOrderStats>> getDailyStatsForWeek(Date startDate, Date endDate) {
+        return orderRepository.getDailyOrderStatsByDateRange(startDate, endDate);
     }
 }
