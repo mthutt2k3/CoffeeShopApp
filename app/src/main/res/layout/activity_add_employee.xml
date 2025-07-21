@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/coffeeCream"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/employeeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_add_employee_view_employee"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/coffeeBrown"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- CardView chứa toàn bộ nội dung -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            android:backgroundTint="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Các EditText -->
+                <EditText
+                    android:id="@+id/edtFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_fullname_add_employee"
+                    android:padding="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_username_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_email_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_phonenumber_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="15"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_password_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_confirmpassword_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <Spinner
+                    android:id="@+id/spPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edittext_border"
+                    android:padding="8dp" />
+
+                <!-- Nút lưu -->
+                <Button
+                    android:id="@+id/btnSaveEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/save_employee_view_employee"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

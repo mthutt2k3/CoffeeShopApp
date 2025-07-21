@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color for staff name -->
+    <color name="staff_name_color_view_staff">#000000</color> <!-- Black for staff name -->
+
+    <!-- Color for staff role -->
+    <color name="staff_role_color_view_staff">#888888</color> <!-- Light gray for role -->
+
+    <!-- Color for staff email -->
+    <color name="staff_email_color_view_staff">#666666</color> <!-- Dark gray for email -->
+
+    <!-- White color for text -->
+    <color name="text_color_white_view_staff">#FFFFFF</color> <!-- White text color -->
+
+    <!-- Color for delete button background -->
+    <color name="button_background_red_view_staff">#FF0000</color> <!-- Red background for delete button -->
+</resources> 

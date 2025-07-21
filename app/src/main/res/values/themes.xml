@@ -1,9 +1,63 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.CoffeeShopManagement" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.PRM392_CoffeeShopManagement" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#8D6E63</item>
+        <item name="colorPrimaryVariant">#5D4037</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">#A1887F</item>
+        <item name="colorSecondaryVariant">#4E342E</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.CoffeeShopManagement" parent="Base.Theme.CoffeeShopManagement" />
+    <style name="Theme.PRM392_CoffeeShopManagement" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#8D6E63</item>
+        <item name="colorPrimaryVariant">#5D4037</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">#A1887F</item>
+        <item name="colorSecondaryVariant">#4E342E</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.LoginPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#8D6E63</item>
+        <item name="colorPrimaryVariant">#5D4037</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">#A1887F</item>
+        <item name="colorSecondaryVariant">#4E342E</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.ViewHomePage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#8D6E63</item>
+        <item name="colorPrimaryVariant">#5D4037</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">#A1887F</item>
+        <item name="colorSecondaryVariant">#4E342E</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="roundedCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">#FFFFFF</item>
+    </style>
 </resources>

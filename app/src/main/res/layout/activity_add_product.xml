@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f4f1"
+    android:padding="16dp"
+    tools:context=".activity.AddProductActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/productTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Product"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#47372f"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Product Name -->
+        <EditText
+            android:id="@+id/edtProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Name"
+            android:inputType="text"
+            android:backgroundTint="#bbbbbb"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Product Recipe -->
+        <EditText
+            android:id="@+id/edtProductRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Recipe"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top"
+            android:backgroundTint="#bbbbbb"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Product Price -->
+        <EditText
+            android:id="@+id/edtProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Price"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#bbbbbb"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Category Spinner -->
+        <Spinner
+            android:id="@+id/spCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Stock Quantity -->
+        <EditText
+            android:id="@+id/edtStockQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stock Quantity"
+            android:inputType="number"
+            android:backgroundTint="#bbbbbb"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Image preview + URL section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <!-- Image Preview -->
+            <ImageView
+                android:id="@+id/imgPreview"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:contentDescription="Product image"
+                android:onClick="openFileChooserAdd"
+                android:layout_marginEnd="8dp" />
+
+            <!-- URL input + Preview button -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtImageUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Paste image URL"
+                    android:inputType="textUri"
+                    android:backgroundTint="#bbbbbb"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/btnPreviewUrlImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preview from URL"
+                    android:backgroundTint="#a2795d"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- File name -->
+        <TextView
+            android:id="@+id/txtFileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No file selected"
+            android:textStyle="italic"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="4dp" />
+
+        <!-- File info -->
+        <TextView
+            android:id="@+id/txtFileInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You can choose image from device or paste an image URL."
+            android:textSize="12sp"
+            android:textColor="#777777"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Product"
+            android:backgroundTint="#8b5e3c"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="24dp" />
+    </LinearLayout>
+</ScrollView>
