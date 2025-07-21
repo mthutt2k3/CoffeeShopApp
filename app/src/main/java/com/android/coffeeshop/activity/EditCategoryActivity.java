@@ -40,35 +40,33 @@ public class EditCategoryActivity extends BaseActivity {
         return R.layout.activity_edit_category;
     }
     private void onSaveCategoryClicked() {
-        if (!validateRequiredFields()) {
+        String inputName = edtCategoryName.getText().toString().trim();
+        if (inputName.isEmpty()) {
+            edtCategoryName.setError("Category name is required");
             return;
         }
-
-        try {
-            String name = edtCategoryName.getText().toString().trim();
-            Category newCategory = new Category();
-            newCategory.setCategoryName(name);
-            newCategory.setCategoryId(CategoryId);
-            categoryViewModel.updateCategory(newCategory);
-
-            Toast.makeText(this, "Category updated successfully", Toast.LENGTH_SHORT).show();
-            finish();
-
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid category", Toast.LENGTH_SHORT).show();
-        }
-    }
-    private boolean validateRequiredFields() {
-        boolean isValid = true;
-        if (edtCategoryName.getText().toString().trim().isEmpty()) {
-            edtCategoryName.setError("Category name is required");
-            return false;
-        }
-        List<Category> categories = categoryViewModel.getCategoryListByName(edtCategoryName.getText().toString().trim()).getValue();
-        if (categories != null && !categories.isEmpty()) {
-            edtCategoryName.setError("Category name already exists");
-            return false;
-        }
-        return isValid;
+        categoryViewModel.getCategoryListByName(inputName).observe(this, categories -> {
+            boolean isDuplicate = false;
+            if (categories != null && !categories.isEmpty()) {
+                // Nếu chỉ có 1 category trùng tên và chính là category đang sửa thì không tính là duplicate
+                if (!(categories.size() == 1 && categories.get(0).getCategoryId() == CategoryId)) {
+                    isDuplicate = true;
+                }
+            }
+            if (isDuplicate) {
+                edtCategoryName.setError("Category name already exists");
+            } else {
+                try {
+                    Category newCategory = new Category();
+                    newCategory.setCategoryName(inputName);
+                    newCategory.setCategoryId(CategoryId);
+                    categoryViewModel.updateCategory(newCategory);
+                    Toast.makeText(this, "Category updated successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid category", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
