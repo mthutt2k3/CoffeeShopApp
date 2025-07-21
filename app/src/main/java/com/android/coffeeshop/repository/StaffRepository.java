@@ -85,4 +85,8 @@ public class StaffRepository {
     public LiveData<List<Role>> getStaffRoles() {
         return roleDao.getStaffRoles();
     }
+
+    public User getUserByPhone(String phone) {
+        return userDao.getUserByPhone(phone);
+    }
 }

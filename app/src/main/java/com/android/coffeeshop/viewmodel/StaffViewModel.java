@@ -53,4 +53,8 @@ public class StaffViewModel extends AndroidViewModel {
     public User getUserById(int userId) {
         return repository.getUserById(userId);
     }
+
+    public User getUserByPhone(String phone) {
+        return repository.getUserByPhone(phone);
+    }
 }
