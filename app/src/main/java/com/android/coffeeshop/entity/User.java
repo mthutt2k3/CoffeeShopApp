@@ -1,10 +1,6 @@
 package com.android.coffeeshop.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import lombok.AccessLevel;
+import com.google.firebase.firestore.PropertyName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,42 +10,43 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(tableName = "user")
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class User {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "user_id")
-    private   int userId;
+    @PropertyName("userId")
+    int userId;
 
-    @ColumnInfo(name = "email")
+    @PropertyName("email")
     @NonNull
-    private   String email;
+    String email;
 
-    @ColumnInfo(name = "user_name")
+    @PropertyName("userName")
     @NonNull
-    private  String userName;
+    String userName;
 
-    @ColumnInfo(name = "phone_number")
+    @PropertyName("phoneNumber")
     @NonNull
-    private   String phoneNumber;
+    String phoneNumber;
 
-    @ColumnInfo(name = "password")
+    @PropertyName("password")
     @NonNull
-    private    String password;
+    String password;
 
-    @ColumnInfo(name = "full_name")
-    private   String fullName;
+    @PropertyName("fullName")
+    String fullName;
 
-    @ColumnInfo(name = "avatar_url")
-    private   String avatarUrl;
+    @PropertyName("avatarUrl")
+    String avatarUrl;
 
-    @ColumnInfo(name = "position")
-    private   String position;
+    @PropertyName("position")
+    String position;
 
-    @ColumnInfo(name = "salary")
-    private   double salary;
+    @PropertyName("salary")
+    double salary;
 
-    @ColumnInfo(name = "active")
+    @PropertyName("active")
     @NonNull
-    private boolean active = true;
+    boolean active = true;
+
+    @PropertyName("roleName")
+    String roleName;
 }

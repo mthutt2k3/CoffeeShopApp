@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -29,6 +30,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -53,4 +55,12 @@ dependencies {
 
     // MPAndroidChart for charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // Thêm Firebase dependencies
+    implementation 'com.google.firebase:firebase-firestore:24.11.0'
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 }

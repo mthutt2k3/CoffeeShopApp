@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.android.coffeeshop.dao.AppDatabase;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.OrderDao;
 import com.android.coffeeshop.dao.ScheduleDao;
 import com.android.coffeeshop.dao.UserDao;
@@ -27,7 +27,7 @@ public class UserRepository {
     private ExecutorService executorService;
 
     public UserRepository(Context context) {
-        AppDatabase db = AppDatabase.getInstance(context);
+        FirestoreDatabase db = FirestoreDatabase.getInstance(context);
         userDao = db.userDao();
         scheduleDao = db.scheduleDao();
         orderDao = db.orderDao();

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.android.coffeeshop.dao.AppDatabase;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.OrderDetailDao;
 import com.android.coffeeshop.dao.ProductDao;
 import com.android.coffeeshop.entity.Product;
@@ -20,7 +20,7 @@ public class ProductRepository {
     private ExecutorService executorService;
 
     public ProductRepository(Context context) {
-        AppDatabase db = AppDatabase.getInstance(context);
+        FirestoreDatabase db = FirestoreDatabase.getInstance(context);
         productDao = db.productDao();
         orderDetailDao = db.orderDetailDao();
         executorService = Executors.newSingleThreadExecutor();

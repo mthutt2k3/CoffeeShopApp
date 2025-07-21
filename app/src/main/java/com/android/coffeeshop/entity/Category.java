@@ -1,24 +1,19 @@
 package com.android.coffeeshop.entity;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
+import com.google.firebase.firestore.PropertyName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@Entity(tableName = "category")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "category_id")
+    @PropertyName("categoryId")
     private int categoryId;
 
-    @ColumnInfo(name = "category_name")
+    @PropertyName("categoryName")
     @NonNull
-    private  String categoryName;
+    private String categoryName;
 }

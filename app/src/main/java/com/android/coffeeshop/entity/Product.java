@@ -1,12 +1,7 @@
 package com.android.coffeeshop.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
-
-import java.util.Date;
-
+import com.google.firebase.firestore.PropertyName;
+import com.google.firebase.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,39 +10,37 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(tableName = "product", foreignKeys = @ForeignKey(entity = Category.class, parentColumns = "category_id", childColumns = "category_id"))
 public class Product {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "product_id")
-    int productId;
+    @PropertyName("productId")
+    private int productId;
 
-    @ColumnInfo(name = "category_id")
+    @PropertyName("categoryId")
     @NonNull
-    int categoryId;
+    private int categoryId;
 
-    @ColumnInfo(name = "product_name")
+    @PropertyName("productName")
     @NonNull
-    String productName;
+    private String productName;
 
-    @ColumnInfo(name = "product_recipes")
-    String productRecipes;
+    @PropertyName("productRecipes")
+    private String productRecipes;
 
-    @ColumnInfo(name = "product_price")
+    @PropertyName("productPrice")
     @NonNull
-    double productPrice;
+    private double productPrice;
 
-    @ColumnInfo(name = "stock_quantity")
+    @PropertyName("stockQuantity")
     @NonNull
-    int stockQuantity;
+    private int stockQuantity;
 
-    @ColumnInfo(name = "product_image")
-    String productImage;
+    @PropertyName("productImage")
+    private String productImage;
 
-    @ColumnInfo(name = "create_at")
+    @PropertyName("createdAt")
     @NonNull
-    Date createdAt;
+    private Timestamp createdAt;
 
-    @ColumnInfo(name = "status")
+    @PropertyName("status")
     @NonNull
-    boolean status = true;
+    private boolean status = true;
 }

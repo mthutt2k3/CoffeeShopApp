@@ -4,8 +4,8 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.android.coffeeshop.dao.AppDatabase;
 import com.android.coffeeshop.dao.CategoryDao;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.ProductDao;
 import com.android.coffeeshop.entity.Category;
 
@@ -20,7 +20,7 @@ public class CategoryRepository {
     private ExecutorService executorService;
 
     public CategoryRepository(Context context) {
-        AppDatabase db = AppDatabase.getInstance(context);
+        FirestoreDatabase db = FirestoreDatabase.getInstance(context);
         categoryDao = db.categoryDao();
         productDao = db.productDao();
         executorService = Executors.newSingleThreadExecutor();

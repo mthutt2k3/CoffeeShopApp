@@ -2,7 +2,7 @@ package com.android.coffeeshop.repository;
 
 import android.content.Context;
 
-import com.android.coffeeshop.dao.AppDatabase;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.OrderDetailDao;
 import com.android.coffeeshop.entity.OrderDetail;
 
@@ -15,7 +15,7 @@ public class OrderDetailRepository {
     private ExecutorService executorService;
 
     public OrderDetailRepository(Context context) {
-        AppDatabase db = AppDatabase.getInstance(context);
+        FirestoreDatabase db = FirestoreDatabase.getInstance(context);
         orderDetailDao = db.orderDetailDao();
         executorService = Executors.newSingleThreadExecutor();
     }

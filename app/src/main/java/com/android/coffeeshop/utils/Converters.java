@@ -2,13 +2,20 @@ package com.android.coffeeshop.utils;
 
 import androidx.room.TypeConverter;
 
+import com.google.firebase.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Converters {
 
-    
 
+    public static Timestamp dateToTimestamp(Date date) {
+        return date != null ? new Timestamp(date) : null;
+    }
+
+    public static Date timestampToDate(Timestamp timestamp) {
+        return timestamp != null ? timestamp.toDate() : null;
+    }
     // Chuyển Date thành String (định dạng "yyyy-MM-dd HH:mm:ss")
     @TypeConverter
     public static String fromDateToString(Date date) {

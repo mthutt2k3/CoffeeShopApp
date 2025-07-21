@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.android.coffeeshop.dao.AppDatabase;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.ScheduleDao;
 import com.android.coffeeshop.dao.UserDao;
 import com.android.coffeeshop.entity.Schedule;
@@ -17,7 +17,7 @@ public class ScheduleRepository {
     private UserDao userDao;
 
     public ScheduleRepository(Application application) {
-        AppDatabase db = AppDatabase.getInstance(application);
+        FirestoreDatabase db = FirestoreDatabase.getInstance(application);
         scheduleDao = db.scheduleDao();
         userDao = db.userDao();
     }

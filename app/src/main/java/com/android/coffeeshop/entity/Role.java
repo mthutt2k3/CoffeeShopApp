@@ -1,30 +1,23 @@
 package com.android.coffeeshop.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
+import com.google.firebase.firestore.PropertyName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(tableName = "role")
-
 public class Role {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "role_id")
+    @PropertyName("roleId")
     private int roleId;
 
-    @ColumnInfo(name = "role_name")
+    @PropertyName("roleName")
     @NonNull
     private String roleName;
 
-    @ColumnInfo(name = "role_description")
+    @PropertyName("roleDescription")
     @NonNull
     private String roleDescription;
 }

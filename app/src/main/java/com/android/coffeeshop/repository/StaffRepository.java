@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.android.coffeeshop.dao.AppDatabase;
+import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.RoleDao;
 import com.android.coffeeshop.dao.UserDao;
 import com.android.coffeeshop.entity.Role;
@@ -23,7 +23,7 @@ public class StaffRepository {
     private ExecutorService executorService;
 
     public StaffRepository(Application application) {
-        AppDatabase database = AppDatabase.getInstance(application);
+        FirestoreDatabase database = FirestoreDatabase.getInstance(application);
         userDao = database.userDao();
         roleDao = database.roleDao();
         staffList = userDao.getStaffList();

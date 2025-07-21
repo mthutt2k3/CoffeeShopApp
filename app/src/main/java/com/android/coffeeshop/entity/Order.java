@@ -1,12 +1,7 @@
 package com.android.coffeeshop.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
-
-import java.util.Date;
-
+import com.google.firebase.firestore.PropertyName;
+import com.google.firebase.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,34 +10,32 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(tableName = "order", foreignKeys = @ForeignKey(entity = User.class, parentColumns = "user_id", childColumns = "user_id"))
 public class Order {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "order_id")
-    private  int orderId;
+    @PropertyName("orderId")
+    private int orderId;
 
-    @ColumnInfo(name = "user_id")
+    @PropertyName("userId")
     @NonNull
-    private  int userId;
+    private int userId;
 
-    @ColumnInfo(name = "total_quantity")
+    @PropertyName("totalQuantity")
     @NonNull
-    private   float totalQuantity;
+    private float totalQuantity;
 
-    @ColumnInfo(name = "total_price")
+    @PropertyName("totalPrice")
     @NonNull
-    private   float totalPrice;
+    private float totalPrice;
 
-    @ColumnInfo(name = "status")
-    private  String status;
+    @PropertyName("status")
+    private String status;
 
-    @ColumnInfo(name = "customer")
-    private  String customer;
+    @PropertyName("customer")
+    private String customer;
 
-    @ColumnInfo(name = "payment_status")
-    private  String paymentStatus;
+    @PropertyName("paymentStatus")
+    private String paymentStatus;
 
-    @ColumnInfo(name = "create_at")
+    @PropertyName("createAt")
     @NonNull
-    private  Date createAt;
+    private Timestamp createAt;
 }
