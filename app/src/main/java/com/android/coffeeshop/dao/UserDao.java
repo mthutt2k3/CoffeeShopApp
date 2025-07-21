@@ -108,4 +108,8 @@ public interface UserDao {
 
         @Query("SELECT * FROM user WHERE user_id = :userId")
         LiveData<User> getUserSchedule(int userId);
+
+        @Query("UPDATE user SET active = 0 WHERE user_id = :userId")
+        void deactivateUser(int userId);
+
 }
