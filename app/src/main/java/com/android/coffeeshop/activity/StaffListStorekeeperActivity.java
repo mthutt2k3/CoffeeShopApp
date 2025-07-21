@@ -144,6 +144,7 @@ public class StaffListStorekeeperActivity extends BaseActivity implements StaffA
 
         // Thiết lập sự kiện click cho nút Yes
         btnYes.setOnClickListener(v -> {
+            int count = staffToDelete.size();
             // Tiến hành xóa staff đã chọn
             for (StaffWithRole staff : staffToDelete) {
                 staffViewModel.deleteStaff(staff.getUserId());
@@ -151,7 +152,7 @@ public class StaffListStorekeeperActivity extends BaseActivity implements StaffA
             // Xóa các lựa chọn và cập nhật UI
             staffAdapter.clearSelection();
             checkboxAll.setChecked(false);
-            Toast.makeText(this, getString(R.string.staff_delete_success_message, staffToDelete.size()),
+            Toast.makeText(this, getString(R.string.staff_delete_success_message, count),
                     Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
