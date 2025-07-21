@@ -158,6 +158,17 @@ public class EditStaffActivity extends BaseActivity {
             return false;
         }
 
+        try {
+            double salaryValue = Double.parseDouble(salary);
+            if (salaryValue <= 0) {
+                edtSalary.setError("Salary must be positive");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            edtSalary.setError("Salary must be a number");
+            return false;
+        }
+
         if (TextUtils.isEmpty(password)) {
             edtPassword.setError("Password is required");
             return false;
