@@ -24,7 +24,7 @@ public class AddStaffActivity extends BaseActivity {
 
     private EditText edtName, edtSalary, edtPassword, edtEmail, edtMobile;
     private Spinner spinnerRole;
-    private Button btnAdd, btnCancel;
+    private ImageButton btnAdd, btnCancel;
     private ImageButton btnBack;
     private StaffViewModel staffViewModel;
     private RoleSpinnerAdapter roleAdapter;
@@ -110,6 +110,17 @@ public class AddStaffActivity extends BaseActivity {
             return false;
         }
 
+        try {
+            double salaryValue = Double.parseDouble(salary);
+            if (salaryValue <= 0) {
+                edtSalary.setError("Salary must be positive");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            edtSalary.setError("Salary must be a number");
+            return false;
+        }
+
         if (TextUtils.isEmpty(password)) {
             edtPassword.setError("Password is required");
             return false;
@@ -141,6 +152,12 @@ public class AddStaffActivity extends BaseActivity {
         User existingUsername = staffViewModel.getUserByUsername(username);
         if (existingUsername != null) {
             edtEmail.setError("Username would conflict. Try another email");
+            return false;
+        }
+
+        User existingPhone = staffViewModel.getUserByPhone(mobile);
+        if (existingPhone != null) {
+            edtMobile.setError("Mobile number already in use");
             return false;
         }
 

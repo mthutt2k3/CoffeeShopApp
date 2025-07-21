@@ -25,7 +25,7 @@ public class EditStaffActivity extends BaseActivity {
 
     private EditText edtName, edtSalary, edtPassword, edtEmail, edtMobile;
     private Spinner spinnerRole;
-    private Button btnSave, btnCancel;
+    private ImageButton btnSave, btnCancel;
     private ImageButton btnBack;
     private StaffViewModel staffViewModel;
     private RoleSpinnerAdapter roleAdapter;
@@ -57,7 +57,7 @@ public class EditStaffActivity extends BaseActivity {
         btnBack = findViewById(R.id.btnBack);
 
         // Set button text to Save instead of Add
-        btnSave.setText("Save");
+
     }
 
     private void setupViewModel() {
@@ -155,6 +155,17 @@ public class EditStaffActivity extends BaseActivity {
 
         if (TextUtils.isEmpty(salary)) {
             edtSalary.setError("Salary is required");
+            return false;
+        }
+
+        try {
+            double salaryValue = Double.parseDouble(salary);
+            if (salaryValue <= 0) {
+                edtSalary.setError("Salary must be positive");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            edtSalary.setError("Salary must be a number");
             return false;
         }
 
