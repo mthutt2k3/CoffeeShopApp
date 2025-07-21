@@ -57,7 +57,7 @@ public class StaffRepository {
 
     public void deleteStaff(int userId) {
         executorService.execute(() -> {
-            userDao.deleteUserRole(userId);
+//            userDao.deleteUserRole(userId);
             userDao.deleteUser(userId);
         });
     }
