@@ -77,13 +77,13 @@
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Login"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
+                android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
                 android:paddingHorizontal="32dp"
-                android:paddingVertical="12dp" />
+                android:paddingVertical="12dp"
+                android:text="Login"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
