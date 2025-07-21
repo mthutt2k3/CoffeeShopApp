@@ -75,8 +75,8 @@ public class EmployeeListActivity extends BaseActivity {
 
     private void showDeleteConfirmationDialog(int employeeId, String fullName) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Employee " + fullName)
-                .setMessage("Do you want to delete " + fullName + " ?")
+                .setTitle("Deactivate Employee " + fullName)
+                .setMessage("Do you want to deactivate " + fullName + " ?")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     confirmDelete(employeeId);
                 })
@@ -84,12 +84,12 @@ public class EmployeeListActivity extends BaseActivity {
                 .show();
     }
     private void confirmDelete(int employeeId) {
-        employeeViewModel.deleteEmployee(employeeId, isDeleted -> {
+        employeeViewModel.deactivateEmployee(employeeId, isSuccess -> {
             runOnUiThread(() -> {
-                if (isDeleted) {
-                    Toast.makeText(this, "Employee deleted successfully", Toast.LENGTH_SHORT).show();
+                if (isSuccess) {
+                    Toast.makeText(this, "Employee deactivated successfully", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Cannot delete employee. It has existing orders or schedules.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to deactivate employee.", Toast.LENGTH_SHORT).show();
                 }
             });
         });

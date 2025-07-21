@@ -29,6 +29,6 @@ public interface CategoryDao {
     void insert(Category category);
     @Update
     void update(Category category);
-    @Query("SELECT category.* FROM category WHERE category_name = :name")
+    @Query("SELECT category.* FROM category WHERE LOWER(TRIM(category_name)) = LOWER(TRIM(:name))")
     LiveData<List<Category>> getCategoriesListByName(String name);
 }

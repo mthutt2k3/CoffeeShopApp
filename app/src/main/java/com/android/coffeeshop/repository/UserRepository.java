@@ -112,4 +112,17 @@ public class UserRepository {
     public void updatePassword(String username, String newPassword) {
         userDao.updatePassword(username, newPassword);
     }
+
+    public void deactivateEmployee(int employeeId, Consumer<Boolean> callback) {
+        executorService.execute(() -> {
+            try {
+                userDao.deactivateUser(employeeId);
+                callback.accept(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+                callback.accept(false);
+            }
+        });
+    }
+
 }

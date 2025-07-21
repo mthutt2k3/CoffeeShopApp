@@ -1,6 +1,7 @@
 package com.android.coffeeshop.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,11 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
         holder.tvEmployeeName.setText(employee.getFullName());
         holder.tvPosition.setText(employee.getPosition());
-        if (employee.getAvatarUrl() != null && !employee.getAvatarUrl().isEmpty()) {
-            File imgFile = new File(employee.getAvatarUrl());
+
+        // Avatar
+        String avatarUrl = employee.getAvatarUrl();
+        if (avatarUrl != null && !avatarUrl.isEmpty()) {
+            File imgFile = new File(avatarUrl);
             if (imgFile.exists()) {
                 Picasso.get()
                         .load(imgFile)
@@ -56,17 +60,40 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
                 holder.ivAvatar.setImageResource(R.drawable.img_error);
             }
         } else {
-            holder.ivAvatar.setImageResource(R.drawable.img_error);
+            holder.ivAvatar.setImageResource(R.drawable.img_avatar); // fallback
         }
+
+        // Trạng thái: Active / Inactive
+        if (employee.isActive()) {
+            holder.itemView.setAlpha(1.0f); // Bình thường
+        } else {
+            holder.itemView.setAlpha(0.5f); // Làm mờ
+        }
+
+        // Sự kiện chỉnh sửa
         holder.tvEmployeeName.setOnClickListener(v -> {
-            onEditClickListener.onEditClick(employee.getUserId(), employee.getFullName(), employee.getUserName(),
-                    employee.getEmail(), employee.getPhoneNumber(), employee.getPassword(), employee.getPosition(), employee.isActive());
+            if (onEditClickListener != null) {
+                onEditClickListener.onEditClick(
+                        employee.getUserId(),
+                        employee.getFullName(),
+                        employee.getUserName(),
+                        employee.getEmail(),
+                        employee.getPhoneNumber(),
+                        employee.getPassword(),
+                        employee.getPosition(),
+                        employee.isActive()
+                );
+            }
         });
 
+        // Sự kiện xóa
         holder.tvAction.setOnClickListener(v -> {
-            onDeleteClickListener.onDeleteClick(employee.getUserId(), employee.getFullName());
+            if (onDeleteClickListener != null) {
+                onDeleteClickListener.onDeleteClick(employee.getUserId(), employee.getFullName());
+            }
         });
     }
+
 
     @Override
     public int getItemCount() {

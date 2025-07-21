@@ -52,4 +52,10 @@ public class EmployeeViewModel extends AndroidViewModel {
     public User getUserByUserName(String username) {
         return userRepository.getUserByUserName(username);
     }
+
+    public void deactivateEmployee(int employeeId, Consumer<Boolean> callback) {
+        userRepository.deactivateEmployee(employeeId, callback);
+    }
+
+
 }
