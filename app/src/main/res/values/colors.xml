@@ -36,4 +36,12 @@
     <!--    <color name="black">#000000</color>-->
     <color name="primary">#A67C52</color>
     <!--    <color name="gray">#6B6B6B</color>-->
+
+    <!-- Màu của e Huy nhé cả nhà   -->
+    <color name="coffeeBrown">#5C4033</color>
+    <color name="coffeeLightBrown">#A1866F</color>
+    <color name="coffeeCream">#F9F5F2</color>
+    <color name="coffeeGray">#E0E0E0</color>
+    <color name="coffeeTextDark">#3E2C1C</color>
+    <color name="coffeeDark">#3E2723</color>
 </resources>

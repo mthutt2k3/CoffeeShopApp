@@ -24,7 +24,7 @@ public class AddStaffActivity extends BaseActivity {
 
     private EditText edtName, edtSalary, edtPassword, edtEmail, edtMobile;
     private Spinner spinnerRole;
-    private Button btnAdd, btnCancel;
+    private ImageButton btnAdd, btnCancel;
     private ImageButton btnBack;
     private StaffViewModel staffViewModel;
     private RoleSpinnerAdapter roleAdapter;

@@ -16,6 +16,7 @@ public class EditCategoryActivity extends BaseActivity {
     private int CategoryId;
     private EditText edtCategoryName;
     private Button btnSaveCategory;
+    private Button btnCancel;
     private CategoryViewModel categoryViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +25,14 @@ public class EditCategoryActivity extends BaseActivity {
 
         edtCategoryName = findViewById(R.id.edtCategoryName);
         btnSaveCategory = findViewById(R.id.btnSaveCategory);
-
+        btnCancel = findViewById(R.id.cancelButton);
         categoryViewModel = new CategoryViewModel(getApplication());
         btnSaveCategory.setOnClickListener(v -> onSaveCategoryClicked());
         Intent intent = getIntent();
         CategoryId = intent.getIntExtra("CATEGORY_ID", -1);
         String categoryName = intent.getStringExtra("CATEGORY_NAME");
         edtCategoryName.setText(categoryName);
+        btnCancel.setOnClickListener(v -> finish());
     }
 
     @Override

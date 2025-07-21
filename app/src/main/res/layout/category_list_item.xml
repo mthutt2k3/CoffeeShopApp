@@ -10,7 +10,7 @@
         android:id="@+id/categoryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:paddingVertical="5dp"
         android:text="Category Name"
@@ -27,6 +27,7 @@
         android:text="X"
         android:textColor="@android:color/white"
         android:textSize="14sp"
+        android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="@id/categoryName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/categoryName" />

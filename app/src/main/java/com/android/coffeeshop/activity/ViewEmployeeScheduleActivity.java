@@ -1,5 +1,6 @@
 package com.android.coffeeshop.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,16 +20,20 @@ import com.android.coffeeshop.adapter.ScheduleEmployeeAdapter;
 import com.android.coffeeshop.entity.Schedule;
 import com.android.coffeeshop.viewmodel.ScheduleViewModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewEmployeeScheduleActivity extends BaseActivity {
     @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_view_employee_schedule;
     }
+
     private TextView monthYearTV, currentWeekTV;
     private TextView selectedDayTextView = null;
     private Button btnPrevious, btnNext, btnNewEvent;
@@ -41,12 +46,7 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         initData();
         showTime();
         addEvents();
@@ -58,7 +58,6 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
         currentWeekTV = findViewById(R.id.currentWeekTV);
         btnPrevious = findViewById(R.id.btnPrevious);
         btnNext = findViewById(R.id.btnNext);
-        btnNewEvent = findViewById(R.id.btnNewEvent);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         calendarRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         // Initialize Calendar to track the current date
@@ -111,14 +110,17 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
         Calendar selectedDate = (Calendar) currentCalendar.clone();
         selectedDate.set(Calendar.DAY_OF_WEEK, dayIndex + 1); // Cập nhật ngày được chọn
         // Chuyển đổi ngày thành UNIX timestamp
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String selectedDateString = dateFormat.format(selectedDate.getTime());
-
-        loadScheduleDataForDate(userName, selectedDateString, selectedDateString);
-
+        try {
+            Date selectedDateValue = dateFormat.parse(selectedDateString);
+            loadScheduleDataForDate(userName, selectedDateValue, selectedDateValue);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void loadScheduleDataForDate(String userName, String startDate, String endDate) {
+    private void loadScheduleDataForDate(String userName, Date startDate, Date endDate) {
         scheduleViewModel.getScheduleOfEmployee(userName, startDate, endDate).observe(this, new Observer<List<Schedule>>() {
             @Override
             public void onChanged(List<Schedule> schedules) {
@@ -144,6 +146,11 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
         showCurrentDate();
         showCurrentWeek();
         showDaysInWeek();
+        // Bỏ chọn ngày đang chọn nếu có
+        if (selectedDayTextView != null) {
+            selectedDayTextView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            selectedDayTextView = null;
+        }
     }
 
     private void nextWeekAction() {
@@ -151,6 +158,11 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
         showCurrentDate();
         showCurrentWeek();
         showDaysInWeek();
+        // Bỏ chọn ngày đang chọn nếu có
+        if (selectedDayTextView != null) {
+            selectedDayTextView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            selectedDayTextView = null;
+        }
     }
 
     private void showCurrentDate() {
@@ -186,9 +198,4 @@ public class ViewEmployeeScheduleActivity extends BaseActivity {
             }
         }
     }
-
-//    @Override
-//    protected int getLayoutResourceId() {
-//        return R.layout.activity_view_employee_schedule;
-//    }
 }
