@@ -41,4 +41,8 @@ public class OrderRepository {
         Date endDate = DateUtils.getEndOfWeek();
         return orderDao.getDailyOrderStatsByDateRange(startDate, endDate);
     }
+
+    public LiveData<List<DailyOrderStats>> getDailyOrderStatsByDateRange(Date startDate, Date endDate) {
+        return orderDao.getDailyOrderStatsByDateRange(startDate, endDate);
+    }
 }
