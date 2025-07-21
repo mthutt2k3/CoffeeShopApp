@@ -113,7 +113,7 @@
             android:name=".activity.ProductListEmployeeActivity"
             android:exported="true"
             android:label="Product List"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.PRM392_CoffeeShopManagement" />
 
         <activity
             android:name=".activity.ViewScheduleListActivity"
@@ -134,7 +134,7 @@
             android:name=".activity.ProductListManagerActivity"
             android:exported="true"
             android:label="Product List Management"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.PRM392_CoffeeShopManagement"  />
         <activity
             android:name=".activity.EditProductActivity"
             android:exported="true"

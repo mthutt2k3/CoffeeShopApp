@@ -40,10 +40,10 @@ public interface UserDao {
         LiveData<List<User>> getEmployees();
 
         @Query("SELECT u.user_id, u.full_name, u.email, u.salary, r.role_name " +
-                        "FROM user u " +
-                        "INNER JOIN user_role ur ON u.user_id = ur.user_id " +
-                        "INNER JOIN role r ON ur.role_id = r.role_id " +
-                        "WHERE ur.role_id IN (2, 3)")
+                "FROM user u " +
+                "INNER JOIN user_role ur ON u.user_id = ur.user_id " +
+                "INNER JOIN role r ON ur.role_id = r.role_id " +
+                "WHERE ur.role_id IN (2, 3) AND u.active = 1")
         // 2: Manager, 3: Employee
         LiveData<List<StaffWithRole>> getStaffList();
 
@@ -66,7 +66,7 @@ public interface UserDao {
         @Query("UPDATE user_role SET role_id = :roleId WHERE user_id = :userId")
         void updateUserRole(int userId, int roleId);
 
-        @Query("DELETE FROM user WHERE user_id = :userId")
+        @Query("UPDATE user SET active = 0 WHERE user_id = :userId")
         void deleteUser(int userId);
 
         @Query("DELETE FROM user_role WHERE user_id = :userId")

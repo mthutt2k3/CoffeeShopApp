@@ -15,6 +15,7 @@ import java.util.List;
 public class AddCategoryActivity extends BaseActivity {
     private EditText edtCategoryName;
     private Button btnSaveCategory;
+    private Button btnCancel;
     private CategoryViewModel categoryViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +24,11 @@ public class AddCategoryActivity extends BaseActivity {
 
         edtCategoryName = findViewById(R.id.categoryInput);
         btnSaveCategory = findViewById(R.id.saveButton);
-
+        btnCancel = findViewById(R.id.cancelButton);
         categoryViewModel = new CategoryViewModel(getApplication());
         btnSaveCategory.setOnClickListener(v -> onSaveCategoryClicked());
+
+        btnCancel.setOnClickListener(v -> finish());
     }
 
     @Override

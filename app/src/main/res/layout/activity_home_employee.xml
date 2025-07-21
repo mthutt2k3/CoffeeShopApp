@@ -5,14 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/coffeeCream"
     tools:context=".activity.HomeEmployeeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
+        <!-- Shop Title -->
         <TextView
             android:id="@+id/shopName"
             android:layout_width="0dp"
@@ -21,12 +23,13 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Cafe Shop Management"
-            android:textColor="@color/lavender"
-            android:textSize="20sp"
+            android:textColor="@color/coffeeDark"
+            android:textSize="22sp"
             app:layout_constraintEnd_toStartOf="@id/shopImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Shop Description -->
         <TextView
             android:id="@+id/shopDesc"
             android:layout_width="0dp"
@@ -35,22 +38,25 @@
             android:layout_marginTop="65dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Shop from A to Z"
-            android:textColor="@color/lavender"
+            android:textColor="@color/coffeeTextDark"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@id/shopImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/shopName" />
 
+        <!-- Shop Image -->
         <ImageView
             android:id="@+id/shopImage"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/home_page"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/shopName"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Row 1: Product & Category -->
         <LinearLayout
             android:id="@+id/row1"
             android:layout_width="0dp"
@@ -58,35 +64,24 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/shopImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shopImage">
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Product Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/productCard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="10dp"
+                android:backgroundTint="@color/coffeeLightBrown"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/productButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/productImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Product"
-                        android:textColor="@color/lavender"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/productImage"
@@ -96,34 +91,34 @@
                         android:layout_marginTop="15dp"
                         android:src="@drawable/product_home_page" />
 
+                    <TextView
+                        android:id="@+id/productButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/productImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Product"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="18sp" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
 
+            <!-- Category Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/categoryCard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="10dp"
+                android:backgroundTint="@color/coffeeLightBrown"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/categoryButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/categoryImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Category"
-                        android:textColor="@color/lavender"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/categoryImage"
@@ -133,12 +128,22 @@
                         android:layout_marginTop="15dp"
                         android:src="@drawable/category_home_page" />
 
+                    <TextView
+                        android:id="@+id/categoryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/categoryImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Category"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="18sp" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
 
+        <!-- Row 2: Profile & Work Schedule -->
         <LinearLayout
             android:id="@+id/row2"
             android:layout_width="0dp"
@@ -146,35 +151,24 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/row1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row1">
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Profile Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/profileCard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="10dp"
+                android:backgroundTint="@color/coffeeLightBrown"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/profileButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/profileImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Profile"
-                        android:textColor="@color/lavender"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/profileImage"
@@ -184,34 +178,34 @@
                         android:layout_marginTop="15dp"
                         android:src="@drawable/profile_home_page" />
 
+                    <TextView
+                        android:id="@+id/profileButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/profileImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Profile"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="18sp" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
 
+            <!-- Work Schedule Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/workScheduleCard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="10dp"
+                android:backgroundTint="@color/coffeeLightBrown"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/workScheduleButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/workScheduleImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Work Schedule"
-                        android:textColor="@color/lavender"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/workScheduleImage"
@@ -221,12 +215,22 @@
                         android:layout_marginTop="15dp"
                         android:src="@drawable/schedule_home_page" />
 
+                    <TextView
+                        android:id="@+id/workScheduleButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/workScheduleImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Work Schedule"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="18sp" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
 
+        <!-- Row 3: Order -->
         <LinearLayout
             android:id="@+id/row3"
             android:layout_width="0dp"
@@ -234,35 +238,24 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/row2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row2">
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Order Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/orderCard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:elevation="20dp"
+                android:elevation="10dp"
+                android:backgroundTint="@color/coffeeLightBrown"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/OrderButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/orderImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Order"
-                        android:textColor="@color/lavender"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/orderImage"
@@ -272,12 +265,20 @@
                         android:layout_marginTop="15dp"
                         android:src="@drawable/order_home_page" />
 
+                    <TextView
+                        android:id="@+id/OrderButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/orderImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Order"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="18sp" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

@@ -1,132 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".activity.EditEmployeeActivity">
+    android:background="@color/coffeeCream"
+    android:padding="16dp">
 
-    <!-- Employee Title -->
-    <TextView
-        android:id="@+id/employeeTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/header_edit_employee_view_employee"
-        android:textColor="@color/lavender"
-        android:textSize="40sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <!-- Full Name -->
-    <EditText
-        android:id="@+id/edtFullName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_fullname_add_employee"
-        android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/employeeTitle" />
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/employeeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_edit_employee_view_employee"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/coffeeBrown"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- Username -->
-    <EditText
-        android:id="@+id/edtUserName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_username_add_employee"
-        android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtFullName" />
+        <!-- CardView chứa form -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            android:backgroundTint="@color/white">
 
-    <!-- Email -->
-    <EditText
-        android:id="@+id/edtEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_email_add_employee"
-        android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtUserName" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-    <!-- Phone Number -->
-    <EditText
-        android:id="@+id/edtPhoneNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_phonenumber_add_employee"
-        android:maxLength="15"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+                <!-- Các EditText -->
+                <EditText
+                    android:id="@+id/edtFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_fullname_add_employee"
+                    android:padding="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-    <!-- Password -->
-    <EditText
-        android:id="@+id/edtPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_password_add_employee"
-        android:inputType="textPassword"
-        android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber" />
+                <EditText
+                    android:id="@+id/edtUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_username_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-    <!-- Confirm Password -->
-    <EditText
-        android:id="@+id/edtConfirmPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="@string/employees_confirmpassword_add_employee"
-        android:inputType="textPassword"
-        android:maxLength="50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_email_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-    <!-- Active Toggle -->
-    <Switch
-        android:id="@+id/swActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/employees_active_edit_employee"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                <EditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_phonenumber_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLength="15"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-    <!-- Position Spinner -->
-    <Spinner
-        android:id="@+id/spPosition"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/swActive" />
+                <EditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_password_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-    <!-- Save Button -->
-    <Button
-        android:id="@+id/btnSaveEmployee"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/save_employee_view_employee"
-        android:textColor="@color/button_text_color_home_view_employee"
-        android:background="@color/button_background_color_home_view_employee"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spPosition" />
+                <EditText
+                    android:id="@+id/edtConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/employees_confirmpassword_add_employee"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Active Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/employees_active_edit_employee"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="16sp" />
+
+                    <Switch
+                        android:id="@+id/swActive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Spinner chọn vị trí -->
+                <Spinner
+                    android:id="@+id/spPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edittext_border"
+                    android:padding="8dp" />
+
+                <!-- Nút lưu -->
+                <Button
+                    android:id="@+id/btnSaveEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/save_employee_view_employee"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
