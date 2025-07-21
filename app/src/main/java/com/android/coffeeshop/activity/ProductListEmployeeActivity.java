@@ -35,7 +35,6 @@ public class ProductListEmployeeActivity extends BaseActivity implements Categor
         return R.layout.activity_product_list_employee;
     }
 
-    private TextView showCategories;
     RecyclerView recyclerView;
     List<Product> products = new ArrayList<>();
     private ProductViewModel productViewModel;
@@ -60,14 +59,11 @@ public class ProductListEmployeeActivity extends BaseActivity implements Categor
         addEvents();
 
         getProductRequest();
-        showCurrentCategoryLabel(0);
 
         skeletonLayout.startShimmer();
     }
 
     private void initData() {
-        showCategories = findViewById(R.id.showCategories);
-        showCategories.setVisibility(View.GONE);
         skeletonLayout = findViewById(R.id.skeletonLayout);
 
         recyclerView = findViewById(R.id.productRecyclerView);
@@ -90,19 +86,13 @@ public class ProductListEmployeeActivity extends BaseActivity implements Categor
 
     private void showCategoryBottomSheet() {
         ArrayList<Category> categories = new ArrayList<>();
-        categoryViewModel.getCategorieList().observe(this, new Observer<List<Category>>() {
+        categoryViewModel.getCategories().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categoryList) {
                 categories.addAll(categoryList);
             }
         });
-        showCategories.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CategoryBottomSheetFragment bottomSheetFragment = new CategoryBottomSheetFragment(categories);
-                bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-            }
-        });
+
     }
 
     private void getProductRequest() {
@@ -146,16 +136,6 @@ public class ProductListEmployeeActivity extends BaseActivity implements Categor
         });
     }
 
-    private void showCurrentCategoryLabel(int categoryId) {
-        if (categoryId == 0) {
-            showCategories.setText("Tất cả");
-        } else {
-            // find category name by categoryId in categories
-            Category category = categoryViewModel.getCategoryById(categoryId);
-            showCategories.setText(category.getCategoryName());
-        }
-    }
-
     @Override
     public void onCategoryItemClick(int categoryId) {
         if (categoryId == 0)
@@ -169,6 +149,5 @@ public class ProductListEmployeeActivity extends BaseActivity implements Categor
                 }
             });
 
-        showCurrentCategoryLabel(categoryId);
     }
 }
