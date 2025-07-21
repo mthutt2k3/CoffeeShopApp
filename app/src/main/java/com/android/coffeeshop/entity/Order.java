@@ -15,15 +15,12 @@ public class Order {
     private int orderId;
 
     @PropertyName("userId")
-    @NonNull
     private int userId;
 
     @PropertyName("totalQuantity")
-    @NonNull
     private float totalQuantity;
 
     @PropertyName("totalPrice")
-    @NonNull
     private float totalPrice;
 
     @PropertyName("status")

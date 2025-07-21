@@ -6,14 +6,13 @@ import com.android.coffeeshop.entity.Schedule;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.android.gms.tasks.Tasks;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FirestoreScheduleDao implements ScheduleDao {
+public class FirestoreScheduleDao implements ScheduleDao, BaseDao {
     private final FirebaseFirestore db;
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -27,25 +26,21 @@ public class FirestoreScheduleDao implements ScheduleDao {
         try {
             Date start = dateFormat.parse(startDate);
             Date end = dateFormat.parse(endDate);
-            db.collection("schedules")
+            QuerySnapshot snapshot = executeFirestoreTask(db.collection("schedules")
                     .whereGreaterThanOrEqualTo("startDate", new com.google.firebase.Timestamp(start))
                     .whereLessThanOrEqualTo("startDate", new com.google.firebase.Timestamp(end))
-                    .get()
-                    .addOnSuccessListener(queryDocumentSnapshots -> {
-                        List<Schedule> schedules = new ArrayList<>();
-                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                            Schedule schedule = doc.toObject(Schedule.class);
-                            if (schedule != null) {
-                                schedule.setScheduleId(Integer.parseInt(doc.getId()));
-                            }
-                            schedules.add(schedule);
-                        }
-                        liveData.setValue(schedules);
-                    })
-                    .addOnFailureListener(e -> {
-                        e.printStackTrace();
-                        liveData.setValue(new ArrayList<>());
-                    });
+                    .get());
+            List<Schedule> schedules = new ArrayList<>();
+            if (snapshot != null) {
+                for (DocumentSnapshot doc : snapshot) {
+                    Schedule schedule = doc.toObject(Schedule.class);
+                    if (schedule != null) {
+                        schedule.setScheduleId(Integer.parseInt(doc.getId()));
+                    }
+                    schedules.add(schedule);
+                }
+            }
+            liveData.setValue(schedules);
         } catch (Exception e) {
             e.printStackTrace();
             liveData.setValue(new ArrayList<>());
@@ -56,38 +51,33 @@ public class FirestoreScheduleDao implements ScheduleDao {
     @Override
     public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, String startDate, String endDate) {
         MutableLiveData<List<Schedule>> liveData = new MutableLiveData<>();
-        try {
-            // Lấy userId từ userName
-            QuerySnapshot userSnapshot = Tasks.await(db.collection("users").whereEqualTo("userName", userName).get());
-            if (!userSnapshot.isEmpty()) {
-                String userId = userSnapshot.getDocuments().get(0).getId();
+        QuerySnapshot userSnapshot = executeFirestoreTask(db.collection("users").whereEqualTo("userName", userName).get());
+        if (userSnapshot != null && !userSnapshot.isEmpty()) {
+            String userId = userSnapshot.getDocuments().get(0).getId();
+            try {
                 Date start = dateFormat.parse(startDate);
                 Date end = dateFormat.parse(endDate);
-                db.collection("schedules")
+                QuerySnapshot scheduleSnapshot = executeFirestoreTask(db.collection("schedules")
                         .whereEqualTo("userId", Integer.parseInt(userId))
                         .whereGreaterThanOrEqualTo("startDate", new com.google.firebase.Timestamp(start))
                         .whereLessThanOrEqualTo("startDate", new com.google.firebase.Timestamp(end))
-                        .get()
-                        .addOnSuccessListener(scheduleSnapshot -> {
-                            List<Schedule> schedules = new ArrayList<>();
-                            for (DocumentSnapshot doc : scheduleSnapshot) {
-                                Schedule schedule = doc.toObject(Schedule.class);
-                                if (schedule != null) {
-                                    schedule.setScheduleId(Integer.parseInt(doc.getId()));
-                                }
-                                schedules.add(schedule);
-                            }
-                            liveData.setValue(schedules);
-                        })
-                        .addOnFailureListener(e -> {
-                            e.printStackTrace();
-                            liveData.setValue(new ArrayList<>());
-                        });
-            } else {
+                        .get());
+                List<Schedule> schedules = new ArrayList<>();
+                if (scheduleSnapshot != null) {
+                    for (DocumentSnapshot doc : scheduleSnapshot) {
+                        Schedule schedule = doc.toObject(Schedule.class);
+                        if (schedule != null) {
+                            schedule.setScheduleId(Integer.parseInt(doc.getId()));
+                        }
+                        schedules.add(schedule);
+                    }
+                }
+                liveData.setValue(schedules);
+            } catch (Exception e) {
+                e.printStackTrace();
                 liveData.setValue(new ArrayList<>());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
             liveData.setValue(new ArrayList<>());
         }
         return liveData;
@@ -95,27 +85,22 @@ public class FirestoreScheduleDao implements ScheduleDao {
 
     @Override
     public void delete(Schedule schedule) {
-        db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).delete();
+        executeFirestoreTaskVoid(db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).delete());
     }
 
     @Override
     public void insert(Schedule schedule) {
-        db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).set(schedule);
+        executeFirestoreTaskVoid(db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).set(schedule));
     }
 
     @Override
     public void update(Schedule schedule) {
-        db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).set(schedule);
+        executeFirestoreTaskVoid(db.collection("schedules").document(String.valueOf(schedule.getScheduleId())).set(schedule));
     }
 
     @Override
     public int countSchedulesByUserId(int userId) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collection("schedules").whereEqualTo("userId", userId).get());
-            return snapshot.size();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+        QuerySnapshot snapshot = executeFirestoreTask(db.collection("schedules").whereEqualTo("userId", userId).get());
+        return snapshot != null ? snapshot.size() : 0;
     }
 }

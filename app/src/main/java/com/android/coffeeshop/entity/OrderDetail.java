@@ -14,18 +14,14 @@ public class OrderDetail {
     private int orderDetailId;
 
     @PropertyName("orderId")
-    @NonNull
     private int orderId;
 
     @PropertyName("productId")
-    @NonNull
     private int productId;
 
     @PropertyName("price")
-    @NonNull
     private double price;
 
     @PropertyName("quantity")
-    @NonNull
     private int quantity;
 }

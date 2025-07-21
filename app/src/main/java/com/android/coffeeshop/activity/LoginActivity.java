@@ -43,6 +43,12 @@ public class LoginActivity extends AppCompatActivity {
         edLoginPassword = findViewById(R.id.edLoginPassword);
         rememberMeCheckBox = findViewById(R.id.chkRememberMe);
 
+        Button btnInsertData = findViewById(R.id.btnInsertData);
+        btnInsertData.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ImportDataActivity.class);
+            startActivity(intent);
+        });
+
         Button btnLogin = findViewById(R.id.btnLogin);
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         String savedUsername = sharedPreferences.getString("username", "");

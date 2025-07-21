@@ -15,22 +15,18 @@ public class Product {
     private int productId;
 
     @PropertyName("categoryId")
-    @NonNull
     private int categoryId;
 
     @PropertyName("productName")
-    @NonNull
     private String productName;
 
     @PropertyName("productRecipes")
     private String productRecipes;
 
     @PropertyName("productPrice")
-    @NonNull
     private double productPrice;
 
     @PropertyName("stockQuantity")
-    @NonNull
     private int stockQuantity;
 
     @PropertyName("productImage")
@@ -41,6 +37,5 @@ public class Product {
     private Timestamp createdAt;
 
     @PropertyName("status")
-    @NonNull
     private boolean status = true;
 }

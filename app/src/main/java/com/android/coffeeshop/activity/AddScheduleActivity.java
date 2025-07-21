@@ -13,8 +13,10 @@ import android.widget.Toast;
 import com.android.coffeeshop.R;
 import com.android.coffeeshop.entity.Schedule;
 import com.android.coffeeshop.entity.User;
+import com.android.coffeeshop.utils.Converters;
 import com.android.coffeeshop.viewmodel.EmployeeViewModel;
 import com.android.coffeeshop.viewmodel.ScheduleViewModel;
+import com.google.firebase.Timestamp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -119,20 +121,24 @@ public class AddScheduleActivity extends BaseActivity {
 
         try {
             String startDate = edtStartDate.getText().toString().trim();
-//            String endDate = edtEndDate.getText().toString().trim();
             User user = employeeViewModel.getUserByUserName(spEmployee.getSelectedItem().toString());
             Schedule newSchedule = new Schedule();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            newSchedule.setEndDate(dateFormat.parse(startDate));
-            newSchedule.setStartDate(dateFormat.parse(startDate));
+            // Chuyển đổi startDate thành Timestamp
+            Date parsedDate = dateFormat.parse(startDate);
+            Timestamp timestamp = Converters.dateToTimestamp(parsedDate);
+            newSchedule.setStartDate(timestamp);
+            newSchedule.setEndDate(timestamp); // Nếu endDate giống startDate
             newSchedule.setUserId(user.getUserId());
+
             String startTimeString = edtStartTime.getText().toString().trim();
             String endTimeString = edtEndTime.getText().toString().trim();
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
             Date startTime = timeFormat.parse(startTimeString);
             Date endTime = timeFormat.parse(endTimeString);
-            newSchedule.setStartTime(startTime);
-            newSchedule.setEndTime(endTime);
+            // Chuyển đổi startTime và endTime thành Timestamp
+            newSchedule.setStartTime(Converters.dateToTimestamp(startTime));
+            newSchedule.setEndTime(Converters.dateToTimestamp(endTime));
 
             scheduleViewModel.addSchedule(newSchedule);
             Toast.makeText(this, "Added successfully", Toast.LENGTH_SHORT).show();

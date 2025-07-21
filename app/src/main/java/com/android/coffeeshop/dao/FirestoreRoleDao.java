@@ -5,13 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.android.coffeeshop.entity.Role;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirestoreRoleDao implements RoleDao {
+public class FirestoreRoleDao implements RoleDao, BaseDao {
     private final FirebaseFirestore db;
 
     public FirestoreRoleDao(FirebaseFirestore db) {
@@ -20,26 +19,21 @@ public class FirestoreRoleDao implements RoleDao {
 
     @Override
     public void insertRole(Role role) {
-        db.collection("roles").document(String.valueOf(role.getRoleId())).set(role);
+        executeFirestoreTaskVoid(db.collection("roles").document(String.valueOf(role.getRoleId())).set(role));
     }
 
     @Override
     public Role getRoleByName(String roleName) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collection("roles").whereEqualTo("roleName", roleName).get());
-            if (!snapshot.isEmpty()) {
-                DocumentSnapshot doc = snapshot.getDocuments().get(0);
-                Role role = doc.toObject(Role.class);
-                if (role != null) {
-                    role.setRoleId(Integer.parseInt(doc.getId()));
-                }
-                return role;
+        QuerySnapshot snapshot = executeFirestoreTask(db.collection("roles").whereEqualTo("roleName", roleName).get());
+        if (snapshot != null && !snapshot.isEmpty()) {
+            DocumentSnapshot doc = snapshot.getDocuments().get(0);
+            Role role = doc.toObject(Role.class);
+            if (role != null) {
+                role.setRoleId(Integer.parseInt(doc.getId()));
             }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            return role;
         }
+        return null;
     }
 
     @Override
@@ -80,16 +74,14 @@ public class FirestoreRoleDao implements RoleDao {
 
     @Override
     public Role getRoleById(int roleId) {
-        try {
-            DocumentSnapshot doc = Tasks.await(db.collection("roles").document(String.valueOf(roleId)).get());
+        DocumentSnapshot doc = executeFirestoreTask(db.collection("roles").document(String.valueOf(roleId)).get());
+        if (doc != null) {
             Role role = doc.toObject(Role.class);
             if (role != null) {
                 role.setRoleId(Integer.parseInt(doc.getId()));
             }
             return role;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }

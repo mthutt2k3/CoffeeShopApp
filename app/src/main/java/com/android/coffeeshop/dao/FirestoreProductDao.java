@@ -6,12 +6,11 @@ import com.android.coffeeshop.entity.Product;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirestoreProductDao implements ProductDao {
+public class FirestoreProductDao implements ProductDao, BaseDao {
     private final FirebaseFirestore db;
 
     public FirestoreProductDao(FirebaseFirestore db) {
@@ -38,12 +37,12 @@ public class FirestoreProductDao implements ProductDao {
 
     @Override
     public void insertProduct(Product product) {
-        db.collection("products").document(String.valueOf(product.getProductId())).set(product);
+        executeFirestoreTaskVoid(db.collection("products").document(String.valueOf(product.getProductId())).set(product));
     }
 
     @Override
     public void updateProduct(Product updatedProduct) {
-        db.collection("products").document(String.valueOf(updatedProduct.getProductId())).set(updatedProduct);
+        executeFirestoreTaskVoid(db.collection("products").document(String.valueOf(updatedProduct.getProductId())).set(updatedProduct));
     }
 
     @Override
@@ -68,32 +67,25 @@ public class FirestoreProductDao implements ProductDao {
 
     @Override
     public Product getProductsById(int productId) {
-        try {
-            DocumentSnapshot doc = Tasks.await(db.collection("products").document(String.valueOf(productId)).get());
+        DocumentSnapshot doc = executeFirestoreTask(db.collection("products").document(String.valueOf(productId)).get());
+        if (doc != null) {
             Product product = doc.toObject(Product.class);
             if (product != null) {
                 product.setProductId(Integer.parseInt(doc.getId()));
             }
             return product;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     @Override
     public int countProductsByCategoryId(int categoryId) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collection("products").whereEqualTo("categoryId", categoryId).get());
-            return snapshot.size();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+        QuerySnapshot snapshot = executeFirestoreTask(db.collection("products").whereEqualTo("categoryId", categoryId).get());
+        return snapshot != null ? snapshot.size() : 0;
     }
 
     @Override
     public void deleteProduct(int productId) {
-        db.collection("products").document(String.valueOf(productId)).delete();
+        executeFirestoreTaskVoid(db.collection("products").document(String.valueOf(productId)).delete());
     }
 }

@@ -1,15 +1,16 @@
 package com.android.coffeeshop.dao;
 
+import com.android.coffeeshop.dao.BaseDao;
+import com.android.coffeeshop.dao.OrderDetailDao;
 import com.android.coffeeshop.entity.OrderDetail;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirestoreOrderDetailDao implements OrderDetailDao {
+public class FirestoreOrderDetailDao implements OrderDetailDao, BaseDao {
     private final FirebaseFirestore db;
 
     public FirestoreOrderDetailDao(FirebaseFirestore db) {
@@ -18,20 +19,15 @@ public class FirestoreOrderDetailDao implements OrderDetailDao {
 
     @Override
     public int countOrderDetailsByProductId(int productId) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collectionGroup("orderDetails").whereEqualTo("productId", productId).get());
-            return snapshot.size();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+        QuerySnapshot snapshot = executeFirestoreTask(db.collectionGroup("orderDetails").whereEqualTo("productId", productId).get());
+        return snapshot != null ? snapshot.size() : 0;
     }
 
     @Override
     public List<OrderDetail> getOrderDetailsByOrderId(int orderId) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collection("orders").document(String.valueOf(orderId))
-                    .collection("orderDetails").get());
+        QuerySnapshot snapshot = executeFirestoreTask(db.collection("orders").document(String.valueOf(orderId))
+                .collection("orderDetails").get());
+        if (snapshot != null) {
             List<OrderDetail> orderDetails = new ArrayList<>();
             for (DocumentSnapshot doc : snapshot) {
                 OrderDetail detail = doc.toObject(OrderDetail.class);
@@ -41,9 +37,7 @@ public class FirestoreOrderDetailDao implements OrderDetailDao {
                 orderDetails.add(detail);
             }
             return orderDetails;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
         }
+        return new ArrayList<>();
     }
 }

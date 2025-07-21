@@ -15,7 +15,6 @@ public class Schedule {
     private int scheduleId;
 
     @PropertyName("userId")
-    @NonNull
     private int userId;
 
     @PropertyName("startTime")

@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 import com.android.coffeeshop.R;
 import com.android.coffeeshop.entity.Category;
 import com.android.coffeeshop.entity.Product;
+import com.android.coffeeshop.utils.Converters;
 import com.android.coffeeshop.viewmodel.CategoryViewModel;
 import com.android.coffeeshop.viewmodel.ProductViewModel;
 import com.squareup.picasso.Picasso;
@@ -252,7 +253,7 @@ public class EditProductActivity extends BaseActivity {
             updatedProduct.setStatus(updatedStatus);
             updatedProduct.setCategoryId(updatedCategoryId);
             updatedProduct.setProductImage(selectedImagePath.isEmpty() ? productImage : selectedImagePath);
-            updatedProduct.setCreatedAt(updatedCreatedAt);
+            updatedProduct.setCreatedAt(Converters.dateToTimestamp(updatedCreatedAt));
             productViewModel.updateProduct(updatedProduct);
             Toast.makeText(this, "Product updated successfully", Toast.LENGTH_SHORT).show();
             finish();

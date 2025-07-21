@@ -44,9 +44,8 @@ public class User {
     double salary;
 
     @PropertyName("active")
-    @NonNull
     boolean active = true;
 
-    @PropertyName("roleName")
-    String roleName;
+    @PropertyName("roleId")
+    int roleId;
 }

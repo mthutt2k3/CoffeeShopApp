@@ -2,12 +2,14 @@ package com.android.coffeeshop.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.android.coffeeshop.dao.BaseDao;
+import com.android.coffeeshop.dao.OrderDao;
 import com.android.coffeeshop.entity.Order;
 import com.android.coffeeshop.utils.DailyOrderStats;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.text.SimpleDateFormat;
 
-public class FirestoreOrderDao implements OrderDao {
+public class FirestoreOrderDao implements OrderDao, BaseDao {
     private final FirebaseFirestore db;
 
     public FirestoreOrderDao(FirebaseFirestore db) {
@@ -44,17 +46,15 @@ public class FirestoreOrderDao implements OrderDao {
 
     @Override
     public Order getOrderById(int orderId) {
-        try {
-            DocumentSnapshot doc = Tasks.await(db.collection("orders").document(String.valueOf(orderId)).get());
+        DocumentSnapshot doc = executeFirestoreTask(db.collection("orders").document(String.valueOf(orderId)).get());
+        if (doc != null) {
             Order order = doc.toObject(Order.class);
             if (order != null) {
                 order.setOrderId(Integer.parseInt(doc.getId()));
             }
             return order;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     @Override
@@ -125,12 +125,7 @@ public class FirestoreOrderDao implements OrderDao {
 
     @Override
     public int countOrdersByUserId(int userId) {
-        try {
-            QuerySnapshot snapshot = Tasks.await(db.collection("orders").whereEqualTo("userId", userId).get());
-            return snapshot.size();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+        QuerySnapshot snapshot = executeFirestoreTask(db.collection("orders").whereEqualTo("userId", userId).get());
+        return snapshot != null ? snapshot.size() : 0;
     }
 }

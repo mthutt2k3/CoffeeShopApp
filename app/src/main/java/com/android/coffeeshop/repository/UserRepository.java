@@ -8,7 +8,6 @@ import com.android.coffeeshop.dao.FirestoreDatabase;
 import com.android.coffeeshop.dao.OrderDao;
 import com.android.coffeeshop.dao.ScheduleDao;
 import com.android.coffeeshop.dao.UserDao;
-import com.android.coffeeshop.dao.UserRoleDao;
 import com.android.coffeeshop.entity.User;
 import com.android.coffeeshop.entity.UserRole;
 import com.android.coffeeshop.utils.EditUserProfile;

@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.android.coffeeshop.R;
 import com.android.coffeeshop.entity.Category;
 import com.android.coffeeshop.entity.Product;
+import com.android.coffeeshop.utils.Converters;
 import com.android.coffeeshop.viewmodel.CategoryViewModel;
 import com.android.coffeeshop.viewmodel.ProductViewModel;
 import com.squareup.picasso.Picasso;
@@ -145,7 +146,7 @@ public class AddProductActivity extends BaseActivity {
             newProduct.setCategoryId(categoryId);
             newProduct.setProductImage(selectedImagePath);
             //Unix timestamp
-            newProduct.setCreatedAt(createdAt);
+            newProduct.setCreatedAt(Converters.dateToTimestamp(createdAt));
             newProduct.setStatus(true);
 
             Log.d("ImagePath", "Image path: " + selectedImagePath);

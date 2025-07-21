@@ -7,9 +7,9 @@ public class PasswordUtils {
             return false;
         }
         // 2. Bắt đầu bằng chữ hoa
-        if (!Character.isUpperCase(password.charAt(0))) {
-            return false;
-        }
+//        if (!Character.isUpperCase(password.charAt(0))) {
+//            return false;
+//        }
         // 3. Chứa ít nhất 1 ký tự đặc biệt
         String specialChars = "!@#$%^&*()_+{}|:\"<>?`~[]\\;',./-=";
         boolean hasSpecial = false;
