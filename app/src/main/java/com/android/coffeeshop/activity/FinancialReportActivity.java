@@ -25,8 +25,12 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FinancialReportActivity extends BaseActivity implements OnChartValueSelectedListener {
 
@@ -36,6 +40,8 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
     private ImageButton btnBack;
     private float maxSales = 0f;
     private TextView tvTotalRevenue, tvAverageRevenue;
+    private ImageButton btnPrevWeek, btnNextWeek;
+    private Calendar currentCalendar;
 
     @Override
     protected int getLayoutResourceId() {
@@ -55,12 +61,11 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
         tvWeekRange = findViewById(R.id.tvWeekRange);
         lineChart = findViewById(R.id.lineChart);
         btnBack = findViewById(R.id.btnBack);
-
-        // Hiển thị phạm vi tuần
-        tvWeekRange.setText(DateUtils.getWeekRangeDisplay());
+        btnPrevWeek = findViewById(R.id.btnPrevWeek);
+        btnNextWeek = findViewById(R.id.btnNextWeek);
         tvTotalRevenue = findViewById(R.id.tvTotalRevenue);
         tvAverageRevenue = findViewById(R.id.tvAverageRevenue);
-        // Thiết lập cấu hình cơ bản cho biểu đồ
+        currentCalendar = Calendar.getInstance();
         setupChart();
     }
 
@@ -97,21 +102,45 @@ public class FinancialReportActivity extends BaseActivity implements OnChartValu
     }
 
     private void initData() {
-        // Khởi tạo ViewModel
         orderViewModel = new OrderViewModel(getApplication());
+        loadReportForCurrentWeek();
+    }
 
-        // Lấy dữ liệu biểu đồ
-        orderViewModel.getDailyStatsForCurrentWeek().observe(this, dailyStats -> {
+    private void loadReportForCurrentWeek() {
+        Date startOfWeek = DateUtils.getStartOfWeek(currentCalendar);
+        Date endOfWeek = DateUtils.getEndOfWeek(currentCalendar);
+        updateWeekRangeLabel(startOfWeek, endOfWeek);
+        orderViewModel.getDailyStatsForWeek(startOfWeek, endOfWeek).observe(this, dailyStats -> {
             if (dailyStats != null && !dailyStats.isEmpty()) {
                 setupLineChart(dailyStats);
+            } else {
+                setupLineChart(new ArrayList<>());
             }
         });
     }
+
+    private void moveToPreviousWeek() {
+        currentCalendar.add(Calendar.WEEK_OF_YEAR, -1);
+        loadReportForCurrentWeek();
+    }
+
+    private void moveToNextWeek() {
+        currentCalendar.add(Calendar.WEEK_OF_YEAR, 1);
+        loadReportForCurrentWeek();
+    }
+
+    private void updateWeekRangeLabel(Date start, Date end) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        tvWeekRange.setText(sdf.format(start) + " - " + sdf.format(end));
+    }
+
     private String formatCurrency(float amount) {
         return String.format("%,.0f", amount);
     }
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
+        btnPrevWeek.setOnClickListener(v -> moveToPreviousWeek());
+        btnNextWeek.setOnClickListener(v -> moveToNextWeek());
     }
 
     private void setupLineChart(List<DailyOrderStats> dailyStats) {

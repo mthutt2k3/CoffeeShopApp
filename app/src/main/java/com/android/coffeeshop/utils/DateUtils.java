@@ -38,6 +38,28 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+    // Lấy ngày đầu tuần (Chủ Nhật) từ một Calendar bất kỳ
+    public static Date getStartOfWeek(Calendar calendar) {
+        Calendar cal = (Calendar) calendar.clone();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
+    }
+
+    // Lấy ngày cuối tuần (Thứ Bảy) từ một Calendar bất kỳ
+    public static Date getEndOfWeek(Calendar calendar) {
+        Calendar cal = (Calendar) calendar.clone();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 999);
+        return cal.getTime();
+    }
+
     public static String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         return sdf.format(date);
