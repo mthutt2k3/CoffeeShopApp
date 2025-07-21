@@ -57,7 +57,7 @@ public class StaffRepository {
 
     public void deleteStaff(int userId) {
         executorService.execute(() -> {
-            userDao.deleteUserRole(userId);
+//            userDao.deleteUserRole(userId);
             userDao.deleteUser(userId);
         });
     }
@@ -84,5 +84,9 @@ public class StaffRepository {
 
     public LiveData<List<Role>> getStaffRoles() {
         return roleDao.getStaffRoles();
+    }
+
+    public User getUserByPhone(String phone) {
+        return userDao.getUserByPhone(phone);
     }
 }
