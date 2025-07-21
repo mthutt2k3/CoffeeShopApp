@@ -25,11 +25,11 @@ public class ScheduleRepository {
 
     // Get the list of schedules for a user between the given date range
     public LiveData<List<Schedule>> getScheduleData(Date startDate, Date endDate) {
-        return scheduleDao.getScheduleData(startDate, endDate);
+        return scheduleDao.getScheduleData(startDate.toString(), endDate.toString());
     }
 
     public LiveData<List<Schedule>> getScheduleOfEmployee(String userName, Date startDate, Date endDate) {
-        return scheduleDao.getScheduleOfEmployee(userName, startDate, endDate);
+        return scheduleDao.getScheduleOfEmployee(userName, startDate.toString(), endDate.toString());
     }
 
     public LiveData<User> getUserById(int userId) {
