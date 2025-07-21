@@ -45,7 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.tvProductName.setText(product.getProductName());
-        // Format price -->  VND
+       // Format price -->  VND
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         String formattedPrice = numberFormat.format(product.getProductPrice());
         if (formattedPrice.endsWith(".0")) {
@@ -53,31 +53,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
         holder.tvProductPrice.setText(formattedPrice);
         if (product.getProductImage() != null && !product.getProductImage().isEmpty()) {
-            String imagePath = product.getProductImage();
-            if (imagePath.startsWith("http")) {
-                // Load ảnh từ URL
+            File imgFile = new File(product.getProductImage());
+            if (imgFile.exists()) {
                 Picasso.get()
-                        .load(imagePath)
+                        .load(imgFile)
                         .placeholder(R.drawable.img_avatar)
                         .error(R.drawable.img_error)
                         .into(holder.ivProductImage);
             } else {
-                // Load ảnh từ file nội bộ
-                File imgFile = new File(imagePath);
-                if (imgFile.exists()) {
-                    Picasso.get()
-                            .load(imgFile)
-                            .placeholder(R.drawable.img_avatar)
-                            .error(R.drawable.img_error)
-                            .into(holder.ivProductImage);
-                } else {
-                    holder.ivProductImage.setImageResource(R.drawable.img_error);
-                }
+                holder.ivProductImage.setImageResource(R.drawable.img_error);
             }
         } else {
             holder.ivProductImage.setImageResource(R.drawable.img_error);
         }
-
 
         holder.tvProductName.setOnClickListener(v -> {
             onEditClickListener.onEditClick(product.getProductId(), product.getProductName(),

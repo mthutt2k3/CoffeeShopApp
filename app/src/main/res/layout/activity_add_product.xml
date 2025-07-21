@@ -1,152 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f4f1"
+    android:background="@color/coffeeCream"
     android:padding="16dp"
     tools:context=".activity.AddProductActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <!-- Title -->
+        <!-- Tiêu đề -->
         <TextView
             android:id="@+id/productTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Product"
-            android:textSize="24sp"
+            android:text="@string/add_product_view_product"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="#47372f"
-            android:gravity="center"
+            android:textColor="@color/coffeeBrown"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Product Name -->
-        <EditText
-            android:id="@+id/edtProductName"
+        <!-- CardView chứa toàn bộ nội dung -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Product Name"
-            android:inputType="text"
-            android:backgroundTint="#bbbbbb"
-            android:layout_marginBottom="8dp" />
+            android:layout_margin="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            android:backgroundTint="@color/white">
 
-        <!-- Product Recipe -->
-        <EditText
-            android:id="@+id/edtProductRecipe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Recipe"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:gravity="top"
-            android:backgroundTint="#bbbbbb"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Product Price -->
-        <EditText
-            android:id="@+id/edtProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Price"
-            android:inputType="numberDecimal"
-            android:backgroundTint="#bbbbbb"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Category Spinner -->
-        <Spinner
-            android:id="@+id/spCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Stock Quantity -->
-        <EditText
-            android:id="@+id/edtStockQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Stock Quantity"
-            android:inputType="number"
-            android:backgroundTint="#bbbbbb"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Image preview + URL section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <!-- Image Preview -->
-            <ImageView
-                android:id="@+id/imgPreview"
-                android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_gallery"
-                android:contentDescription="Product image"
-                android:onClick="openFileChooserAdd"
-                android:layout_marginEnd="8dp" />
-
-            <!-- URL input + Preview button -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
                 <EditText
-                    android:id="@+id/edtImageUrl"
+                    android:id="@+id/edtProductName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Paste image URL"
-                    android:inputType="textUri"
-                    android:backgroundTint="#bbbbbb"
-                    android:layout_marginBottom="8dp" />
+                    android:hint="@string/product_name_add_product"
+                    android:padding="12dp"
+                    android:maxLength="100"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtProductRecipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/product_recipe_add_product"
+                    android:padding="12dp"
+                    android:minLines="4"
+                    android:maxLines="6"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtProductPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/product_price_add_product"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <Spinner
+                    android:id="@+id/spCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/edtStockQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/product_stock_add_product"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColorHint="@color/coffeeTextDark"
+                    android:background="@drawable/edittext_border" />
+
+                <!-- Hình ảnh + file name -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgPreview"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/image_picker_description"
+                        android:onClick="openFileChooserAdd"
+                        android:scaleType="centerCrop"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        app:layout_constraintTop_toBottomOf="@id/edtStockQuantity"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtFileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/product_file_chosen_add_product"
+                        android:textColor="@color/coffeeTextDark"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtFileInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/product_note_image_add_product"
+                    android:textColor="@color/coffeeTextDark"
+                    android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/btnPreviewUrlImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Preview from URL"
-                    android:backgroundTint="#a2795d"
-                    android:textColor="#ffffff" />
+                    android:id="@+id/btnSaveProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/save_product"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background" />
+
             </LinearLayout>
-        </LinearLayout>
-
-        <!-- File name -->
-        <TextView
-            android:id="@+id/txtFileName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No file selected"
-            android:textStyle="italic"
-            android:textSize="14sp"
-            android:textColor="#555555"
-            android:layout_marginBottom="4dp" />
-
-        <!-- File info -->
-        <TextView
-            android:id="@+id/txtFileInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="You can choose image from device or paste an image URL."
-            android:textSize="12sp"
-            android:textColor="#777777"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Save Button -->
-        <Button
-            android:id="@+id/btnSaveProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Product"
-            android:backgroundTint="#8b5e3c"
-            android:textColor="#ffffff"
-            android:layout_marginBottom="24dp" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

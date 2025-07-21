@@ -41,8 +41,8 @@ import java.util.List;
 
 public class EditProductActivity extends BaseActivity {
 
-    private EditText etProductName, etProductPrice, etProductRecipes, etStockQuantity, edtImageUrl;
-    private Button btnSaveProduct, btnPreviewUrlImage;
+    private EditText etProductName, etProductPrice, etProductRecipes, etStockQuantity;
+    private Button btnSaveProduct;
     private Spinner spCategory;
     private ImageView ivProductImage;
     private Switch swActive;
@@ -67,7 +67,6 @@ public class EditProductActivity extends BaseActivity {
                     Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
                 }
             });
-
     private final ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestMultiplePermissions(),
             result -> {
@@ -82,13 +81,12 @@ public class EditProductActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_edit_product);
 
         etProductName = findViewById(R.id.edtProductName);
         etProductPrice = findViewById(R.id.edtProductPrice);
         etProductRecipes = findViewById(R.id.edtProductRecipe);
         etStockQuantity = findViewById(R.id.edtStockQuantity);
-        edtImageUrl = findViewById(R.id.edtImageUrl);
-        btnPreviewUrlImage = findViewById(R.id.btnPreviewUrlImage);
         spCategory = findViewById(R.id.spCategory);
         ivProductImage = findViewById(R.id.ivProductImage);
         swActive = findViewById(R.id.swActive);
@@ -114,27 +112,10 @@ public class EditProductActivity extends BaseActivity {
         etStockQuantity.setText(String.valueOf(stockQuantity));
         swActive.setChecked(status);
         loadProductImageWithFileName(productImage);
-
         checkAndRequestPermissions();
         loadCategories();
-
         ivProductImage.setOnClickListener(this::openFileChooserEdit);
         btnSaveProduct.setOnClickListener(v -> onSaveProductClicked());
-
-        btnPreviewUrlImage.setOnClickListener(v -> {
-            String url = edtImageUrl.getText().toString().trim();
-            if (!url.isEmpty()) {
-                selectedImagePath = url;
-                Picasso.get()
-                        .load(url)
-                        .placeholder(R.drawable.img_avatar)
-                        .error(R.drawable.img_error)
-                        .into(ivProductImage);
-                txtFileName.setText("Image from URL");
-            } else {
-                Toast.makeText(this, "Please enter an image URL", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -142,24 +123,27 @@ public class EditProductActivity extends BaseActivity {
         return R.layout.activity_edit_product;
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadProductImageWithFileName(String imagePath) {
         if (imagePath != null && !imagePath.isEmpty()) {
-            if (imagePath.startsWith("http")) {
-                Picasso.get().load(imagePath).placeholder(R.drawable.img_avatar).error(R.drawable.img_error).into(ivProductImage);
-                txtFileName.setText("Image from URL");
+            File imgFile = new File(imagePath);
+            if (imgFile.exists()) {
+                Picasso.get()
+                        .load(imgFile)
+                        .placeholder(R.drawable.img_avatar)
+                        .error(R.drawable.img_error)
+                        .into(ivProductImage);
+                String fileName = imgFile.getName();
+                txtFileName.setText("Current file: " + fileName);
             } else {
-                File imgFile = new File(imagePath);
-                if (imgFile.exists()) {
-                    Picasso.get().load(imgFile).placeholder(R.drawable.img_avatar).error(R.drawable.img_error).into(ivProductImage);
-                    txtFileName.setText("Current file: " + imgFile.getName());
-                } else {
-                    ivProductImage.setImageResource(R.drawable.img_error);
-                    txtFileName.setText("No file chosen");
-                }
+                ivProductImage.setImageResource(R.drawable.img_error);
+                txtFileName.setText("No file chosen");
             }
+        } else {
+            ivProductImage.setImageResource(R.drawable.img_error);
+            txtFileName.setText("No file chosen");
         }
     }
-
     private void loadCategories() {
         categoryViewModel.getCategories().observe(this, categories -> {
             List<String> categoryNames = new ArrayList<>();
@@ -198,15 +182,16 @@ public class EditProductActivity extends BaseActivity {
             }
 
             File file = new File(dir, getFileName(imageUri));
-            if (file.exists()) file.delete();
-
+            if (file.exists()) {
+                file.delete();
+            }
             Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
             selectedImagePath = file.getAbsolutePath();
             Toast.makeText(this, "Image saved successfully!", Toast.LENGTH_SHORT).show();
 
         } catch (IOException e) {
             Log.e("SaveImage", "Error saving image: " + e.getMessage(), e);
-            Toast.makeText(this, "Error saving image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error saving image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -216,14 +201,18 @@ public class EditProductActivity extends BaseActivity {
             try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                    if (index != -1) result = cursor.getString(index);
+                    if (index != -1) {
+                        result = cursor.getString(index);
+                    }
                 }
             }
         }
         if (result == null) {
             result = uri.getPath();
             int cut = result != null ? result.lastIndexOf('/') : -1;
-            if (cut != -1) result = result.substring(cut + 1);
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
         }
         return result != null ? result : "unknown_file.jpg";
     }
@@ -240,7 +229,9 @@ public class EditProductActivity extends BaseActivity {
     }
 
     private void onSaveProductClicked() {
-        if (!validateRequiredFields()) return;
+        if (!validateRequiredFields()) {
+            return;
+        }
 
         try {
             String updatedName = etProductName.getText().toString().trim();
@@ -248,11 +239,10 @@ public class EditProductActivity extends BaseActivity {
             int updatedStock = Integer.parseInt(etStockQuantity.getText().toString().trim());
             String updatedRecipe = etProductRecipes.getText().toString().trim();
             int updatedCategoryId = spCategory.getSelectedItemPosition() + 1;
+            long updatedCreatedAtLong = new Date().getTime();
+            // Long -->  Date
+            Date updatedCreatedAt = new Date(updatedCreatedAtLong);
             boolean updatedStatus = swActive.isChecked();
-
-            String urlFromInput = edtImageUrl.getText().toString().trim();
-            String finalImagePath = !urlFromInput.isEmpty() ? urlFromInput : (!selectedImagePath.isEmpty() ? selectedImagePath : productImage);
-
             Product updatedProduct = new Product();
             updatedProduct.setProductId(productId);
             updatedProduct.setProductName(updatedName);
@@ -261,32 +251,32 @@ public class EditProductActivity extends BaseActivity {
             updatedProduct.setStockQuantity(updatedStock);
             updatedProduct.setStatus(updatedStatus);
             updatedProduct.setCategoryId(updatedCategoryId);
-            updatedProduct.setProductImage(finalImagePath);
-            updatedProduct.setCreatedAt(new Date());
-
+            updatedProduct.setProductImage(selectedImagePath.isEmpty() ? productImage : selectedImagePath);
+            updatedProduct.setCreatedAt(updatedCreatedAt);
             productViewModel.updateProduct(updatedProduct);
-            Toast.makeText(this, "Sản phẩm đã được cập nhật", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Product updated successfully", Toast.LENGTH_SHORT).show();
             finish();
 
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Giá hoặc số lượng không hợp lệ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid price or quantity", Toast.LENGTH_SHORT).show();
         }
     }
 
     private boolean validateRequiredFields() {
         boolean isValid = true;
         if (etProductName.getText().toString().trim().isEmpty()) {
-            etProductName.setError("Tên sản phẩm không được bỏ trống");
+            etProductName.setError("Product name is required");
             isValid = false;
         }
         if (etProductPrice.getText().toString().trim().isEmpty()) {
-            etProductPrice.setError("Giá sản phẩm không được bỏ trống");
+            etProductPrice.setError("Product price is required");
             isValid = false;
         }
         if (etStockQuantity.getText().toString().trim().isEmpty()) {
-            etStockQuantity.setError("Số lượng tồn kho không được bỏ trống");
+            etStockQuantity.setError("Stock quantity is required");
             isValid = false;
         }
         return isValid;
     }
+
 }
