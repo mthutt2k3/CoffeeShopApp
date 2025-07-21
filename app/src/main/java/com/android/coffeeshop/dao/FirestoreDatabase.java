@@ -27,7 +27,6 @@ public abstract class FirestoreDatabase {
     public abstract OrderDao orderDao();
     public abstract UserDao userDao();
     public abstract RoleDao roleDao();
-    public abstract UserRoleDao userRoleDao();
     public abstract ProductDao productDao();
     public abstract OrderDetailDao orderDetailDao();
     public abstract ScheduleDao scheduleDao();
@@ -38,7 +37,6 @@ class FirestoreDatabaseImpl extends FirestoreDatabase {
     private final OrderDao orderDao;
     private final UserDao userDao;
     private final RoleDao roleDao;
-    private final UserRoleDao userRoleDao;
     private final ProductDao productDao;
     private final OrderDetailDao orderDetailDao;
     private final ScheduleDao scheduleDao;
@@ -49,7 +47,6 @@ class FirestoreDatabaseImpl extends FirestoreDatabase {
         this.orderDao = new FirestoreOrderDao(db);
         this.userDao = new FirestoreUserDao(db);
         this.roleDao = new FirestoreRoleDao(db);
-        this.userRoleDao = new FirestoreUserRoleDao(db);
         this.productDao = new FirestoreProductDao(db);
         this.orderDetailDao = new FirestoreOrderDetailDao(db);
         this.scheduleDao = new FirestoreScheduleDao(db);
@@ -63,8 +60,6 @@ class FirestoreDatabaseImpl extends FirestoreDatabase {
     public UserDao userDao() { return userDao; }
     @Override
     public RoleDao roleDao() { return roleDao; }
-    @Override
-    public UserRoleDao userRoleDao() { return userRoleDao; }
     @Override
     public ProductDao productDao() { return productDao; }
     @Override

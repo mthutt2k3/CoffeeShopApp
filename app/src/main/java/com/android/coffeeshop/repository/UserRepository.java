@@ -22,7 +22,6 @@ public class UserRepository {
     private UserDao userDao;
     private OrderDao orderDao;
     private ScheduleDao scheduleDao;
-    private UserRoleDao userRoleDao;
     private ExecutorService executorService;
 
     public UserRepository(Context context) {
@@ -30,7 +29,6 @@ public class UserRepository {
         userDao = db.userDao();
         scheduleDao = db.scheduleDao();
         orderDao = db.orderDao();
-        userRoleDao = db.userRoleDao();
         executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -74,7 +72,6 @@ public class UserRepository {
         UserRole userRole = new UserRole();
         userRole.setUserId(userId);
         userRole.setRoleId(3);
-        userRoleDao.insertUserRole(userRole);
     }
 
     public boolean isUsernameExists(String username) {
